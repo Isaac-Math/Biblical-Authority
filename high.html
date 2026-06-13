@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>성경의 무오성과 권위 — 대학생 버전</title>
+<style>
+:root{
+  --primary:#2d6a4f; --primary-light:#52b788; --primary-xlight:#d8f3dc;
+  --accent:#e76f51; --sky:#4895ef; --sky-light:#cce5ff;
+  --gold:#f4a261; --gold-light:#fde9d4;
+  --purple:#7b2d8b; --purple-light:#e8d5ed; --purple-dark:#4a1942;
+  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#6c757d;
+  --radius:12px; --shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--purple-light);padding:0 16px;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+nav a{display:inline-block;padding:12px 12px;font-size:.8rem;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;}
+nav a.active,nav a:hover{color:var(--purple);border-bottom-color:var(--purple);}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple) 60%,var(--primary) 100%);color:#fff;padding:48px 24px 36px;text-align:center;}
+.site-header h1{font-size:2rem;font-weight:800;margin-bottom:8px;}
+.site-header p{opacity:.85;font-size:.98rem;max-width:520px;margin:0 auto;line-height:1.7;}
+
+/* MAIN */
+main{max-width:900px;margin:0 auto;padding:36px 20px 80px;}
+section{margin-bottom:60px;}
+.section-title{font-size:1.35rem;font-weight:800;color:var(--purple);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.section-sub{font-size:.9rem;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px;}
+.highlight-box{background:var(--primary-xlight);border-left:4px solid var(--primary);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.75;}
+.purple-box{background:var(--purple-light);border-left:4px solid var(--purple);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.75;}
+.warn-box{background:#fff3e0;border-left:4px solid var(--gold);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.75;}
+.source-box{background:#f1f3f5;border-left:4px solid var(--sky);border-radius:8px;padding:14px 16px;margin:10px 0;font-size:.85rem;line-height:1.7;font-style:italic;}
+
+/* HEBREW */
+.heb{font-size:1.25rem;font-weight:700;color:var(--purple);background:var(--purple-light);padding:3px 10px;border-radius:6px;direction:rtl;display:inline-block;margin:0 4px;}
+
+/* TABS */
+.tab-bar{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:16px;padding-bottom:4px;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{padding:8px 16px;border:none;border-radius:20px;font-size:.84rem;font-weight:600;cursor:pointer;background:#eee;color:var(--muted);transition:all .2s;white-space:nowrap;flex-shrink:0;}
+.tab-btn.active{background:var(--purple);color:#fff;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ACCORDION */
+.acc-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;}
+.acc-head{padding:16px 20px;font-weight:700;font-size:.94rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.acc-head:hover{background:#fafafa;}
+.acc-icon{font-size:1.1rem;color:var(--purple);transition:transform .25s;}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:.9rem;line-height:1.78;color:#333;}
+.acc-body-inner{padding:4px 20px 18px;}
+.acc-item.open .acc-icon{transform:rotate(45deg);}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:var(--purple-light);}
+.tl-item{position:relative;padding:0 0 24px 20px;}
+.tl-dot{position:absolute;left:-20px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--purple);border:3px solid #fff;box-shadow:0 0 0 2px var(--purple);}
+.tl-year{font-size:.78rem;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.tl-title{font-size:.95rem;font-weight:800;margin-bottom:4px;}
+.tl-body{font-size:.88rem;line-height:1.7;color:#444;}
+
+/* SPECTRUM */
+.spectrum-bar{display:flex;border-radius:30px;overflow:hidden;height:28px;margin:16px 0;}
+.spec-seg{flex:1;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;}
+
+/* SCHOLAR CARDS */
+.scholar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.scholar-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--purple);}
+.sc-name{font-size:1rem;font-weight:800;margin-bottom:2px;}
+.sc-dates{font-size:.78rem;color:var(--muted);margin-bottom:8px;}
+.sc-desc{font-size:.84rem;line-height:1.65;color:#444;}
+.sc-works{margin-top:10px;font-size:.8rem;color:var(--purple);font-style:italic;}
+.sc-tag{display:inline-block;background:var(--purple-light);color:var(--purple);border-radius:10px;padding:2px 10px;font-size:.73rem;font-weight:700;margin-top:8px;}
+
+/* GLOSSARY */
+.gloss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.gloss-item{background:var(--card);border-radius:10px;box-shadow:var(--shadow);padding:16px 18px;}
+.gloss-term{font-size:.92rem;font-weight:800;color:var(--purple);margin-bottom:6px;}
+.gloss-def{font-size:.84rem;line-height:1.65;color:#444;}
+
+/* DISCUSS */
+.discuss-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:600px){.discuss-grid{grid-template-columns:1fr;}}
+.discuss-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;border-left:4px solid var(--purple);}
+.discuss-num{font-size:.75rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.discuss-q{font-size:.88rem;font-weight:700;line-height:1.5;margin-bottom:8px;}
+.discuss-hint{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+/* REFERENCE */
+.ref-section{margin-bottom:24px;}
+.ref-section-title{font-size:.85rem;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--purple-light);padding-bottom:6px;margin-bottom:12px;}
+.ref-item{font-size:.84rem;line-height:1.8;padding:8px 0;border-bottom:1px solid #f0f0f0;color:#333;}
+.ref-item:last-child{border-bottom:none;}
+.ref-num{font-weight:800;color:var(--purple);min-width:24px;display:inline-block;}
+
+/* QUIZ */
+.quiz-wrap{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:16px;}
+.quiz-q{font-size:.96rem;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;border:2px solid #e9ecef;transition:all .18s;font-size:.88rem;}
+.quiz-opt:hover{border-color:var(--purple);background:var(--purple-light);}
+.quiz-opt.correct{background:#d8f3dc;border-color:var(--primary);color:var(--primary);}
+.quiz-opt.wrong{background:#ffe0d6;border-color:var(--accent);color:#c0392b;}
+.quiz-fb{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.86rem;line-height:1.6;display:none;}
+.quiz-fb.show{display:block;background:var(--primary-xlight);border-left:3px solid var(--primary);}
+.quiz-score-box{text-align:center;padding:32px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);display:none;}
+.score-big{font-size:3rem;font-weight:800;color:var(--purple);}
+
+/* MOBILE */
+@media(max-width:480px){
+  .site-header{padding:28px 14px 24px;}
+  .site-header h1{font-size:1.55rem;}
+  main{padding:20px 14px 60px;}
+  .card{padding:14px 16px;}
+  .tab-btn{font-size:.78rem;padding:8px 12px;}
+  .quiz-wrap{padding:16px;}
+  .discuss-card{padding:16px;}
+  .heb{font-size:1.1rem;}
+}
+</style>
+</head>
+<body>
+
+<div style="background:var(--purple-dark);padding:10px 20px;display:flex;align-items:center;gap:10px;">
+  <a href="index.html" style="color:#fff;text-decoration:none;font-size:.88rem;display:flex;align-items:center;gap:6px;">🏠 홈으로</a>
+  <span style="color:rgba(255,255,255,.4);font-size:.8rem;">|</span>
+  <span style="color:rgba(255,255,255,.7);font-size:.83rem;">성경의 무오성과 권위 — 대학생 버전</span>
+</div>
+
+<div class="site-header">
+  <h1>📜 성경의 무오성과 권위</h1>
+  <p>대학생 버전 — 신학·해석학·정경론의 깊이로 성경 권위를 탐구합니다.</p>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#s0">소개</a>
+    <a href="#s1">역사</a>
+    <a href="#s2">스펙트럼</a>
+    <a href="#s3">시카고선언</a>
+    <a href="#s4">영감론</a>
+    <a href="#s5">어려운본문</a>
+    <a href="#s6">정경론</a>
+    <a href="#s7">EC와무오성</a>
+    <a href="#s8">학자</a>
+    <a href="#s9">용어</a>
+    <a href="#s10">토론</a>
+    <a href="#s11">레퍼런스</a>
+    <a href="#s12">퀴즈</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- S0 소개 -->
+<section id="s0">
+<div class="section-title">🌐 소개</div>
+<p class="section-sub">무오성 논쟁의 학문적 지형도를 그립니다.</p>
+
+<div class="card">
+  <p style="font-size:.95rem;line-height:1.85;margin-bottom:14px;">
+  성경의 무오성(inerrancy)과 권위(authority) 문제는 20세기 복음주의 신학의 가장 치열한 전장 중 하나였습니다. 이 논쟁은 단순히 "성경을 믿느냐 안 믿느냐"의 문제가 아닙니다. <strong>무오성이란 무엇을 뜻하는가, 권위는 어디서 오는가, 어려운 본문들을 어떻게 다루는가</strong> — 이 질문들은 신학·해석학·언어철학·역사학이 교차하는 복잡한 지점에 있습니다.
+  </p>
+  <div class="highlight-box">
+  <strong>이 자료의 핵심 질문:</strong> EC(진화적 창조)를 수용하는 것이 성경의 무오성·권위를 포기하는 것인가? 이 질문에 답하려면 먼저 무오성이 무엇을 주장하고 무엇을 주장하지 않는지를 정확히 파악해야 합니다.
+  </div>
+</div>
+</section>
+
+
+<!-- S1 역사 -->
+<section id="s1">
+<div class="section-title">🏛️ 무오성의 역사적 발전</div>
+<p class="section-sub">교부들의 성경관에서 1978년 시카고 선언까지.</p>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">4–5세기 | 교부 시대</div>
+    <div class="tl-title">아우구스티누스의 경고</div>
+    <div class="tl-body">아우구스티누스는 성경의 권위를 강하게 신뢰했지만, 동시에 성경을 근거로 과학적으로 터무니없는 주장을 하여 불신자들이 복음을 비웃게 만드는 것을 경계했습니다. <em>De Genesi ad Litteram</em>(창세기 문자적 해석, I.19)에서 그는 "기독교인이 땅·하늘·자연에 대해 어리석은 말을 하면, 이교도들이 성경 전체를 경멸하게 된다"고 썼습니다. 오리게네스도 창세기의 일부 내용이 문자적 불가능성을 지적하며 알레고리 해석을 했습니다.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">16세기 | 종교개혁</div>
+    <div class="tl-title">루터·칼빈: sola Scriptura와 조절 원리</div>
+    <div class="tl-body">루터의 <em>sola Scriptura</em>는 성경이 교회 전통보다 최고 권위라는 원리입니다. 칼빈은 여기에 성령의 내적 증거(testimonium Spiritus Sancti internum)와 조절 원리(accommodation)를 추가했습니다. 칼빈은 창세기 1장을 보며 "하나님이 아이에게 말하듯 우리에게 낮아져 말씀하신다"고 했습니다(Institutes I.13.1). 이 원리는 성경이 현대 과학 교과서가 아님을 지지하는 강력한 근거입니다.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1881년 | 프린스턴 신학교</div>
+    <div class="tl-title">워필드-호지: 현대 무오성 교리의 체계화</div>
+    <div class="tl-body">B.B. 워필드와 A.A. 호지는 <em>Presbyterian Review</em>에 공동 논문 "Inspiration"(1881)을 발표하며 현대적 무오성 교리를 체계화했습니다. 핵심 주장: 성경 원본(autographs)은 완전히 무오하며, 이것은 문자적 차원의 완전 영감(verbal plenary inspiration)을 수반한다. 주목할 것은 워필드 자신은 생물학적 진화를 신학적 위협으로 보지 않았다는 점입니다(1915년 논문에서 유신론적 진화와의 양립 가능성 언급).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1920–1930년대 | 근본주의-현대주의 논쟁</div>
+    <div class="tl-title">복음주의의 분열</div>
+    <div class="tl-body">자유주의 신학(슐라이어마허, 하르낙)의 역사비평 수용에 맞서 근본주의(fundamentalism) 운동이 일어납니다. <em>The Fundamentals</em>(1910–1915, 90편의 소책자)는 성경 무오성, 동정녀 탄생, 부활 등 핵심 교리를 수호하려 했습니다. 그러나 지나친 반지성주의와 반과학주의가 복음주의 내 비판을 받습니다.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">1978년 | 시카고</div>
+    <div class="tl-title">ICBI 시카고 선언 — 현대 무오성 교리의 준거점</div>
+    <div class="tl-body">국제성경무오성위원회(ICBI)가 300여 명의 복음주의 학자들과 함께 채택한 선언. 19개 긍정(Affirmation)과 19개 부정(Denial) 조항으로 구성. 완전무오설의 공식 기준이 되었지만, 장르와 문학적 관습을 인정하는 유연성도 담고 있습니다(→ S3에서 상세 분석).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot"></div>
+    <div class="tl-year">2005년 이후 | 현대 논쟁</div>
+    <div class="tl-title">피터 엔스와 "진보적 복음주의"의 도전</div>
+    <div class="tl-body">피터 엔스의 <em>Inspiration and Incarnation</em>(2005)은 복음주의 내에서 큰 파장을 일으켰습니다. 그는 성경의 인간적 특성 — 고대 근동 신화와의 유사성, 내부 긴장들 — 을 정면으로 인정하면서도 성경의 권위를 지키려 했습니다. 웨스트민스터 신학교 해임 후 BioLogos에서 EC와 성경 무오성의 재해석 작업을 이어가고 있습니다.</div>
+  </div>
+</div>
+</section>
+
+<!-- S2 스펙트럼 -->
+<section id="s2">
+<div class="section-title">📊 무오성 입장 스펙트럼</div>
+<p class="section-sub">보수에서 진보까지, 다섯 가지 주요 입장의 신학적 차이를 분석합니다.</p>
+
+<div class="spectrum-bar">
+  <div class="spec-seg" style="background:#1b4332;">축자영감</div>
+  <div class="spec-seg" style="background:#2d6a4f;">완전무오</div>
+  <div class="spec-seg" style="background:#52b788;color:#1a1a2e;">제한무오</div>
+  <div class="spec-seg" style="background:#7b2d8b;">무류성</div>
+  <div class="spec-seg" style="background:#4a1942;">신정통주의</div>
+</div>
+<p style="font-size:.75rem;color:var(--muted);text-align:right;margin-bottom:16px;">← 보수적 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 진보적 →</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('spec','sp1',this)">① 축자영감설</button>
+  <button class="tab-btn" onclick="switchTab('spec','sp2',this)">② 완전무오설</button>
+  <button class="tab-btn" onclick="switchTab('spec','sp3',this)">③ 제한무오설</button>
+  <button class="tab-btn" onclick="switchTab('spec','sp4',this)">④ 무류성</button>
+  <button class="tab-btn" onclick="switchTab('spec','sp5',this)">⑤ 신정통주의</button>
+</div>
+
+<div id="spec-sp1" class="tab-panel active">
+<div class="card">
+  <p style="font-size:.95rem;font-weight:800;color:var(--purple);margin-bottom:10px;">① 축자영감설 (Verbal Plenary Inspiration)</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경의 모든 단어(verbal)가 완전히(plenary) 하나님께 영감받았다는 입장. 18-19세기 프린스턴 신학 전통에서 체계화. 워필드는 이를 기계적 받아쓰기(mechanical dictation)와 구분하면서, 하나님이 저자의 개성·언어·문체를 <em>통해</em> 정확히 원하시는 단어를 기록하게 하셨다고 설명.</p>
+  <div class="source-box">Warfield, B.B. & Hodge, A.A. "Inspiration." <em>Presbyterian Review</em> 2 (1881): 225–260. — 현대 무오성 교리의 출발점.</div>
+  <div class="warn-box" style="margin-top:10px;"><strong>비판:</strong> 저자의 언어적 특성(바울의 복잡한 헬라어 vs 요한의 단순한 헬라어)이 왜 다른가? 구술 받아쓰기라면 균일해야 하지 않는가?</div>
+</div>
+</div>
+
+<div id="spec-sp2" class="tab-panel">
+<div class="card">
+  <p style="font-size:.95rem;font-weight:800;color:var(--purple);margin-bottom:10px;">② 완전무오설 (Complete Inerrancy) — ICBI 입장</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경은 그것이 다루는 모든 주제 — 신학, 역사, 과학 — 에서 오류가 없다. 단, 무오성은 성경 원본(autographs)에 한정되며, 현대적 정밀도의 기준으로 평가하지 않는다. 장르, 과장법, 관찰자 언어, 어림수 등을 오류가 아닌 문학적 관습으로 인정(시카고 선언 Article XIII).</p>
+  <div class="source-box">ICBI. <em>Chicago Statement on Biblical Inerrancy</em>. 1978. — "We affirm the propriety of using inerrancy as a theological term with reference to the complete truthfulness of Scripture."</div>
+  <div class="highlight-box" style="margin-top:10px;"><strong>핵심 유연성:</strong> 완전무오설은 현대 과학 교과서적 정밀도를 요구하지 않기 때문에, 장르 이해에 따라 EC와 양립 가능한 공간이 있습니다.</div>
+</div>
+</div>
+
+<div id="spec-sp3" class="tab-panel">
+<div class="card">
+  <p style="font-size:.95rem;font-weight:800;color:var(--purple);margin-bottom:10px;">③ 제한무오설 (Limited / Partial Inerrancy)</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경은 신앙·도덕적 가르침에서만 무오하며, 역사·과학의 세부사항은 당대 지식 수준의 오류를 담을 수 있다. 복음주의와 자유주의 신학 사이의 중간 입장. 많은 주류 신학교들이 이 입장을 취하지만, 에반젤리칼 진영에서는 "어디까지가 신학이고 어디까지가 역사인가"라는 경계 문제를 지적하며 비판.</p>
+  <div class="warn-box" style="margin-top:10px;"><strong>핵심 비판 (D.A. 카슨):</strong> 신학 주장과 역사 주장을 분리하는 것이 가능한가? 예수님의 부활은 역사적 사실인 동시에 신학적 주장이다.</div>
+</div>
+</div>
+
+<div id="spec-sp4" class="tab-panel">
+<div class="card">
+  <p style="font-size:.95rem;font-weight:800;color:var(--purple);margin-bottom:10px;">④ 무류성 (Infallibility)</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경은 구원을 이루는 목적에서 결코 실패하지 않는다(infallible). 오류의 부재보다 목적의 신뢰성에 초점. 영국 성공회와 많은 주류 개신교 신학자들이 선호. 이 입장에서 성경은 구원에 필요한 모든 것을 충분히 가르치지만, 역사·과학의 세부사항에서 인간적 한계를 가질 수 있다.</p>
+  <div class="source-box">N.T. Wright는 이 방향으로 성경 권위를 재구성하면서, "성경의 권위(authority of Scripture)"를 "성경에 담긴 하나님의 권위(God's authority exercised through Scripture)"로 이해합니다. Wright, <em>Scripture and the Authority of God</em> (2011).</div>
+</div>
+</div>
+
+<div id="spec-sp5" class="tab-panel">
+<div class="card">
+  <p style="font-size:.95rem;font-weight:800;color:var(--purple);margin-bottom:10px;">⑤ 신정통주의 (Neo-orthodoxy) — 칼 바르트</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">바르트에 따르면 성경은 하나님 말씀(the Word)이 아니라 하나님 말씀의 인간적 증언(witness)입니다. 성경 자체는 오류 가능한 인간의 글이지만, 성령의 역사로 그것을 통해 하나님이 말씀하실 때 성경이 하나님 말씀이 "된다"(becomes). 에반젤리칼은 이것이 성경의 객관적 권위를 약화시킨다고 비판.</p>
+  <div class="source-box">Barth, Karl. <em>Church Dogmatics</em>, Vol. I/1: <em>The Doctrine of the Word of God</em>. Trans. G.W. Bromiley & T.F. Torrance. Edinburgh: T&T Clark, 1975. §§4–7.</div>
+</div>
+</div>
+</section>
+
+
+<!-- S3 시카고 선언 -->
+<section id="s3">
+<div class="section-title">📋 시카고 선언(1978) 분석</div>
+<p class="section-sub">완전무오설의 현대적 기준점인 시카고 선언의 핵심 조항들을 분석합니다.</p>
+
+<div class="card">
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:14px;">1978년 ICBI가 채택한 시카고 선언은 총 19개의 긍정(Affirmation)과 19개의 부정(Denial) 조항으로 구성되어 있습니다. 이 선언이 중요한 이유는 <strong>무오성의 범위를 정의하면서도 과도하게 협소하거나 광의적인 해석을 경계</strong>했기 때문입니다.</p>
+</div>
+
+<div class="acc-item" id="acc1">
+  <div class="acc-head" onclick="toggleAcc('acc1')">
+    <span>📌 Article XI — 무오성의 범위</span><span class="acc-icon">＋</span>
+  </div>
+  <div class="acc-body">
+    <div class="acc-body-inner">
+      <div class="purple-box" style="margin-bottom:12px;font-style:italic;">"We affirm that Scripture, having been given by divine inspiration, is infallible, so that, far from misleading us, it is true and reliable in all the matters it addresses."</div>
+      <p style="font-size:.9rem;line-height:1.75;">핵심: "그것이 다루는 모든 문제에서(in all the matters it addresses)" — 성경이 다루고자 하는 주제에서 진실하고 신뢰할 수 있다는 것이지, 성경이 다루지 않는 주제까지 포함하는 것이 아닙니다. 이 표현은 창세기가 다루는 핵심이 '누가 창조했는가'이지 '어떤 메커니즘으로 창조했는가'가 아님을 허용하는 공간을 만듭니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="acc-item" id="acc2">
+  <div class="acc-head" onclick="toggleAcc('acc2')">
+    <span>📌 Article XII — 역사·과학 진술의 무오성</span><span class="acc-icon">＋</span>
+  </div>
+  <div class="acc-body">
+    <div class="acc-body-inner">
+      <div class="purple-box" style="margin-bottom:12px;font-style:italic;">"We deny that Biblical infallibility and inerrancy are limited to spiritual, religious, or redemptive themes, exclusive of assertions in the fields of history and science."</div>
+      <p style="font-size:.9rem;line-height:1.75;">제한무오설을 명시적으로 거부합니다. 역사·과학 영역을 신학에서 완전히 분리하여 오류 허용 구역으로 만드는 것을 부정합니다. 그러나 이것이 성경을 현대 과학 교과서처럼 읽어야 한다는 뜻이 아님은 Article XIII에서 명확히 합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="acc-item" id="acc3">
+  <div class="acc-head" onclick="toggleAcc('acc3')">
+    <span>📌 Article XIII — 무오성과 양립 가능한 성경 현상 (핵심)</span><span class="acc-icon">＋</span>
+  </div>
+  <div class="acc-body">
+    <div class="acc-body-inner">
+      <div class="purple-box" style="margin-bottom:12px;font-style:italic;">"We deny that it is proper to evaluate Scripture according to standards of truth and error that are alien to its usage or purpose. We further deny that inerrancy is negated by Biblical phenomena such as a lack of modern technical precision, irregularities of grammar or spelling, observational descriptions of nature, the reporting of falsehoods [by characters in the narrative], the use of hyperbole and round numbers, the topical arrangement of material, variant selections of material for parallel accounts, or the use of free citations."</div>
+      <p style="font-size:.9rem;line-height:1.75;margin-bottom:10px;"><strong>이 조항이 EC 논의에서 결정적입니다.</strong> 완전무오설이 명시적으로 인정하는 것들:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 현대 기술 정밀도의 결여</div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 자연에 대한 관찰자 언어</div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 과장법과 어림수</div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 주제별 자료 배열</div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 병행 본문의 다양한 선택</div>
+        <div style="background:#f8f9fa;border-radius:8px;padding:10px;font-size:.82rem;">✓ 자유 인용(free citations)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="acc-item" id="acc4">
+  <div class="acc-head" onclick="toggleAcc('acc4')">
+    <span>📌 Article XVIII — 해석학: 성경이 성경을 해석한다</span><span class="acc-icon">＋</span>
+  </div>
+  <div class="acc-body">
+    <div class="acc-body-inner">
+      <div class="purple-box" style="margin-bottom:12px;font-style:italic;">"We affirm that the text of Scripture is to be interpreted by grammatico-historical exegesis, taking account of its literary forms and devices, and that Scripture is to interpret Scripture."</div>
+      <p style="font-size:.9rem;line-height:1.75;">문법-역사적 주석(grammatico-historical exegesis)을 규범으로 삼되 <strong>문학적 형식과 기법을 고려</strong>하도록 명시합니다. 이것은 창세기를 현대 역사-과학 문서로 읽는 것이 아니라 고대 근동 신학 문학으로 읽는 것이 시카고 선언과 배치되지 않음을 시사합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="warn-box" style="margin-top:16px;">
+<strong>시카고 선언의 한계:</strong> 선언에 서명한 학자들 내에서도 해석 차이가 큽니다. "관찰자 언어"와 "역사적 오류"의 경계를 어디에 긋느냐를 놓고 복음주의 내에서 지속적인 논쟁이 있습니다.
+</div>
+</section>
+
+<!-- S4 영감론 -->
+<section id="s4">
+<div class="section-title">✨ 영감론 이론들</div>
+<p class="section-sub">성경이 어떻게 쓰여졌는지에 대한 신학적 이론들을 비교합니다.</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('insp','i1',this)">성육신 유비</button>
+  <button class="tab-btn" onclick="switchTab('insp','i2',this)">언어행위론</button>
+  <button class="tab-btn" onclick="switchTab('insp','i3',this)">역동적 영감</button>
+  <button class="tab-btn" onclick="switchTab('insp','i4',this)">완전영감</button>
+</div>
+
+<div id="insp-i1" class="tab-panel active">
+<div class="card">
+  <p style="font-weight:800;color:var(--purple);margin-bottom:10px;">성육신 유비 (Incarnational Analogy) — 피터 엔스</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경은 예수 그리스도와 유비적 관계에 있습니다. 예수님이 참 하나님이면서 참 인간이셨듯, 성경은 완전히 신적이면서 완전히 인간적입니다. 이 인간성은 단순한 "그릇"이 아니라 성경의 본질적 일부입니다. 따라서 성경이 고대 근동 신화와 유사한 표현을 쓰거나, 내부적 긴장을 담거나, 시대적 한계의 흔적을 보이는 것은 성경의 권위를 훼손하지 않습니다.</p>
+  <div class="source-box">Enns, Peter. <em>Inspiration and Incarnation: Evangelicals and the Problem of the Old Testament</em>. Grand Rapids: Baker Academic, 2005.</div>
+  <div class="warn-box" style="margin-top:10px;"><strong>비판 (Kevin Vanhoozer):</strong> 예수님의 인성에는 죄가 없지만, 엔스의 유비에 따르면 성경의 인간적 특성에는 오류가 포함될 수 있다. 유비가 정확한가?</div>
+</div>
+</div>
+
+<div id="insp-i2" class="tab-panel">
+<div class="card">
+  <p style="font-weight:800;color:var(--purple);margin-bottom:10px;">언어행위론 (Speech-Act Theory) — 케빈 밴후저</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">J.L. 오스틴의 언어행위론(speech-act theory)을 신학에 적용합니다. 언어는 세 차원을 가집니다: ① 발화내용(locution) — 말해진 것, ② 발화의도(illocution) — 말함으로써 하는 행위(약속, 경고, 명령 등), ③ 발화효과(perlocution) — 청중에게 일어나는 결과. 성경의 권위와 무오성은 발화내용(문자)이 아니라 발화의도(하나님이 무엇을 하고 계신가)를 중심으로 이해해야 합니다.</p>
+  <div class="source-box">Vanhoozer, Kevin J. <em>Is There a Meaning in This Text? The Bible, the Reader, and the Morality of Literary Knowledge</em>. Grand Rapids: Zondervan, 1998.</div>
+  <div class="highlight-box" style="margin-top:10px;"><strong>EC와의 연결:</strong> 창세기의 발화의도(illocution)가 신학적 선포라면, 과학적 발화내용의 정확성 여부는 무오성 판단의 기준이 될 수 없습니다.</div>
+</div>
+</div>
+
+<div id="insp-i3" class="tab-panel">
+<div class="card">
+  <p style="font-weight:800;color:var(--purple);margin-bottom:10px;">역동적 영감 (Dynamic Inspiration)</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">하나님은 저자의 사고·기억·의지·감정을 통해 작동하셨지만, 구체적인 단어 선택은 인간 저자에게 맡겨졌습니다. 기계적 받아쓰기를 거부하면서도 성경의 신적 권위를 유지합니다. 저자별로 다른 문체와 신학적 강조점을 자연스럽게 설명할 수 있습니다. 많은 복음주의 신학자들이 완전영감과 결합하여 사용.</p>
+  <div class="highlight-box" style="margin-top:10px;">바울의 편지(복잡한 헬라어, 논리적 논증)와 요한계시록(묵시 문학, 상징 언어)이 왜 이토록 다른가? 역동적 영감은 이를 저자의 개성과 상황의 자유로운 표현으로 설명합니다.</div>
+</div>
+</div>
+
+<div id="insp-i4" class="tab-panel">
+<div class="card">
+  <p style="font-weight:800;color:var(--purple);margin-bottom:10px;">완전영감 (Plenary Inspiration) + 축자성</p>
+  <p style="font-size:.9rem;line-height:1.8;margin-bottom:12px;">성경의 모든 부분(plenary)이 동등하게 영감받았으며, 이 영감은 단어 수준(verbal)까지 미칩니다. 워필드는 이를 기계적 받아쓰기가 아니라 저자의 개성을 통한 유기적 과정으로 설명했습니다("organic inspiration"). 하나님이 저자의 기질·경험·문체를 미리 준비하셔서 정확히 원하시는 것을 쓰게 하셨다는 것.</p>
+  <div class="source-box">Warfield, B.B. <em>The Inspiration and Authority of the Bible</em>. Philadelphia: Presbyterian and Reformed Publishing, 1948. — 유기적 영감(organic inspiration) 개념 참조.</div>
+</div>
+</div>
+</section>
+
+
+<!-- S5 어려운 본문 -->
+<section id="s5">
+<div class="section-title">⚠️ 어려운 본문들 — 심화</div>
+<p class="section-sub">세 유형의 어려운 본문과 학자들의 접근 방법을 비교합니다.</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('diff','d1',this)">역사적 불일치</button>
+  <button class="tab-btn" onclick="switchTab('diff','d2',this)">도덕적 명령</button>
+  <button class="tab-btn" onclick="switchTab('diff','d3',this)">과학적 기술</button>
+</div>
+
+<div id="diff-d1" class="tab-panel active">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:12px;">역사적 불일치처럼 보이는 본문들</p>
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>솔로몬의 말 수 (왕상 4:26 vs 대하 9:25):</strong> 4만 vs 4천. 학자들의 설명: ① 필사 오류 (히브리어 숫자 필사는 오류 발생률이 높음) ② 열왕기는 마구간 칸 수, 역대기는 말 수를 셌을 가능성 ③ 히브리어 아르베암(40,000)과 아르바 알라핌(4,000)의 혼동. ICBI 시카고 선언은 이런 현상이 무오성을 부정하지 않는다고 명시.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>두 창조 기사 (창 1:1–2:3 vs 창 2:4–25):</strong> 순서와 강조점이 다름. 창 1: 빛→식물→동물→인간(남녀 동시), 창 2: 남자→나무·식물→동물→여자. 문서가설(JEDP)은 별개 자료의 편집을 말하지만, 보수주의는 두 기사가 서로 다른 초점을 지닌 보완적 서술이라고 봄. 창 1은 우주론적 구조를, 창 2는 인간론적 관계를 강조.
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:12px;"><strong>방법론적 원칙:</strong> 켄튼 스팍스는 성경의 인간적 특성을 진지하게 다루면서도, 역사비평의 결론을 무비판적으로 수용하지 말고 신학적 목적과 함께 읽어야 한다고 제안합니다.</div>
+</div>
+</div>
+
+<div id="diff-d2" class="tab-panel">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:12px;">도덕적으로 충격적인 명령 — 헤렘(הֵרֶם)</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>① 과장 수사법 접근 (Paul Copan, Matthew Flannagan):</strong> 고대 근동 전쟁 기록은 과장이 표준 문학 관습이었습니다. "완전 진멸"은 문자적 명령이 아니라 절대적 헌신을 나타내는 수사법. 사사기에서 가나안 민족들이 계속 등장하는 것이 이를 지지합니다.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>② 점진적 계시 (Progressive Revelation) 접근:</strong> 신약에서 예수님은 구약 윤리 명령을 심화·재해석하십니다. "눈에는 눈"→"원수를 사랑하라", "이방인을 증오하라"→"모든 민족을 제자로 삼으라". 헤렘 명령은 이 점진적 계시의 이른 단계로 이해.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>③ 신학적 상징 접근 (Eric Seibert):</strong> 이스라엘이 하나님의 명령이라고 믿었지만 실제로 하나님의 뜻이 아니었을 수 있다. 성경은 이스라엘의 신앙적 이해를 기록하는 것이지, 모든 진술이 하나님의 직접 명령은 아닐 수 있다. 진보적 복음주의 진영 일부의 입장이나, 에반젤리칼에게 강한 비판 받음.
+    </div>
+  </div>
+  <div class="warn-box"><strong>주의:</strong> 이 접근들은 각각 장단점이 있으며, 복음주의 학자들 사이에서도 활발한 논쟁 중입니다. 단순한 해결책은 없습니다.</div>
+</div>
+</div>
+
+<div id="diff-d3" class="tab-panel">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:12px;">과학적 기술처럼 보이는 본문들</p>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>라키아 <span class="heb" style="font-size:1rem;">רָקִיעַ</span> (창 1:6–8):</strong> 개역개정 "궁창", NIV "vault". 고대 근동 우주관에서 하늘은 물을 담는 단단한 돔이었습니다. 히브리어 어근 rq'는 "두드려 펴다"를 뜻합니다. 칼빈의 조절 원리: 하나님이 당대 독자들의 우주관 언어로 말씀하셨습니다. 현대 기상학적 정확성이 이 본문의 목적이 아니었습니다.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:14px;font-size:.87rem;line-height:1.7;">
+      <strong>6일 창조:</strong> 창 1의 "날"(욤, <span class="heb" style="font-size:1rem;">יוֹם</span>)이 24시간인지 긴 시대인지는 복음주의 내에서도 논쟁 중입니다(날-시대 이론, 간격 이론, 문학적 틀 이론). 완전무오설을 지지하는 학자들이 이 다양한 해석을 취합니다. 존 월튼은 창 1이 물질적 기원이 아닌 기능적 기원을 서술한다고 주장합니다.
+    </div>
+  </div>
+  <div class="source-box" style="margin-top:12px;">Walton, John H. <em>The Lost World of Genesis One: Ancient Cosmology and the Origins Debate</em>. Downers Grove: IVP Academic, 2009. — 창세기 1장을 고대 근동 문학 장르로 읽는 탁월한 연구.</div>
+</div>
+</div>
+</section>
+
+<!-- S6 정경론 -->
+<section id="s6">
+<div class="section-title">🏛️ 정경론 — 정경은 어떻게 결정되었나</div>
+<p class="section-sub">정경 형성 과정과 정경성·무오성의 관계를 분석합니다.</p>
+
+<div class="card">
+  <p style="font-weight:700;margin-bottom:12px;">정경 결정의 세 기준</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+    <div style="background:var(--purple-light);border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:1.5rem;margin-bottom:6px;">✝️</div>
+      <div style="font-weight:800;font-size:.88rem;color:var(--purple);margin-bottom:4px;">사도성</div>
+      <div style="font-size:.8rem;color:#555;line-height:1.6;">사도나 그 제자의 저작이거나 사도적 공동체에서 권위 있는 것으로 인정됨</div>
+    </div>
+    <div style="background:var(--primary-xlight);border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:1.5rem;margin-bottom:6px;">📖</div>
+      <div style="font-weight:800;font-size:.88rem;color:var(--primary);margin-bottom:4px;">정통성</div>
+      <div style="font-size:.8rem;color:#555;line-height:1.6;">그리스도, 창조, 구원에 관한 기독교 핵심 교리와 일치함</div>
+    </div>
+    <div style="background:var(--gold-light);border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:1.5rem;margin-bottom:6px;">🌍</div>
+      <div style="font-weight:800;font-size:.88rem;color:#a0522d;margin-bottom:4px;">보편성</div>
+      <div style="font-size:.8rem;color:#555;line-height:1.6;">광범위한 교회 공동체에서 사용되고 권위 있는 것으로 수용됨</div>
+    </div>
+  </div>
+  <div class="purple-box">
+  <strong>중요한 신학적 구분:</strong> 교회가 정경을 <em>결정</em>(determine)한 것이 아니라 이미 권위 있는 것을 <em>인정</em>(recognize)했습니다. 이것은 정경의 권위가 교회에서 오는 것이 아님을 의미합니다. 공의회는 권위를 부여한 것이 아니라 발견하고 확인한 것입니다.
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px;">
+  <p style="font-weight:700;margin-bottom:12px;">정경 형성의 역사적 과정</p>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;gap:12px;align-items:flex-start;font-size:.87rem;line-height:1.7;">
+      <span style="font-weight:800;color:var(--purple);min-width:60px;">1세기</span>
+      <div>바울 서신들이 교회들 사이에서 유포·사용됨. 복음서들이 각 공동체에서 권위 있는 것으로 읽힘. "신약" 개념 아직 없음.</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;font-size:.87rem;line-height:1.7;">
+      <span style="font-weight:800;color:var(--purple);min-width:60px;">2세기</span>
+      <div>마르키온의 이단 정경 (바울 서신 일부 + 누가복음만)이 교회로 하여금 정경 경계를 더 명확히 하게 촉구. 이레나이우스 등 교부들이 4복음서 권위를 주장.</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;font-size:.87rem;line-height:1.7;">
+      <span style="font-weight:800;color:var(--purple);min-width:60px;">367년</span>
+      <div>알렉산드리아의 아타나시우스가 부활절 서신에서 현재 신약 27권과 동일한 목록을 처음 제시.</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;font-size:.87rem;line-height:1.7;">
+      <span style="font-weight:800;color:var(--purple);min-width:60px;">397년</span>
+      <div>카르타고 공의회에서 신약 27권이 공식 확인됨. 논쟁이 있던 책(히브리서, 요한계시록, 야고보서 등)이 포함됨.</div>
+    </div>
+  </div>
+  <div class="source-box" style="margin-top:12px;">McDonald, Lee Martin. <em>The Biblical Canon: Its Origin, Transmission, and Authority</em>. Peabody: Hendrickson, 2007. — 정경 형성 과정의 표준 연구서.</div>
+</div>
+</section>
+
+<!-- S7 EC와 무오성 -->
+<section id="s7">
+<div class="section-title">🌿 EC와 무오성 — 신학적 양립 가능성</div>
+<p class="section-sub">진화적 창조를 수용하면서 무오성을 지키는 것이 가능한가?</p>
+
+<div class="card">
+  <p style="font-weight:800;font-size:1rem;color:var(--primary);margin-bottom:14px;">세 개의 핵심 논증</p>
+
+  <div style="display:flex;flex-direction:column;gap:16px;">
+    <div style="border:2px solid var(--primary-light);border-radius:10px;padding:16px;">
+      <p style="font-weight:800;color:var(--primary);margin-bottom:8px;">① 장르가 진리 주장의 유형을 결정한다</p>
+      <p style="font-size:.88rem;line-height:1.75;">시가 문학(시편)은 감정적 진실을 표현하고, 역사 서술(왕하)은 사건을 기술하고, 지혜 문학(잠언)은 일반적 원칙을 제시합니다. 창세기 1-11장의 장르가 신화-역사적 신학 선포라면, 그것의 진리 주장은 과학적 정확성이 아니라 신학적 주장(하나님이 창조하셨다, 창조는 선하다, 인간은 하나님의 형상이다)에 있습니다. 이 신학적 주장이 무오합니다.</p>
+    </div>
+    <div style="border:2px solid var(--primary-light);border-radius:10px;padding:16px;">
+      <p style="font-weight:800;color:var(--primary);margin-bottom:8px;">② 칼빈의 조절 원리는 과학적 기술의 비정밀성을 설명한다</p>
+      <p style="font-size:.88rem;line-height:1.75;">칼빈은 천문학을 예로 들며 말했습니다: "창세기는 학문적 정확성보다 대중적 이해를 위해 썼다. 모세는 배운 자가 아닌 일반 대중에게 쓴 것이다." (<em>Institutes</em> I.13.1; Commentary on Genesis 1:6) 하나님이 당대 우주관 언어로 말씀하신 것이 진화의 메커니즘을 설명하지 않는 이유입니다.</p>
+    </div>
+    <div style="border:2px solid var(--primary-light);border-radius:10px;padding:16px;">
+      <p style="font-weight:800;color:var(--primary);margin-bottom:8px;">③ 워필드 자신도 EC와 무오성의 양립 가능성을 열어뒀다</p>
+      <p style="font-size:.88rem;line-height:1.75;">완전무오설의 아버지 워필드는 1915년 글에서 "칼빈주의자가 진화를 수용하는 것을 막는 것은 없다"고 썼습니다. 그는 유신론적 진화(Theistic Evolution)를 진화론의 한 버전으로 보면서 신학적으로 위협이 되지 않을 수 있다고 판단했습니다. 이것은 완전무오설 내에서 EC를 위한 공간이 역사적으로 있었음을 보여줍니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="warn-box" style="margin-top:16px;">
+<strong>경고:</strong> 이 양립 가능성은 자동적인 것이 아닙니다. 창세기 1-11장의 장르와 신학적 목적에 대한 신중한 해석학적 판단이 선행되어야 합니다. 또한 아담과 하와의 역사성 문제 등은 EC와 무오성 논의에서 여전히 복잡한 쟁점으로 남아 있습니다.
+</div>
+</section>
+
+
+<!-- S8 학자 -->
+<section id="s8">
+<div class="section-title">👤 주요 학자</div>
+<p class="section-sub">무오성·성경 권위 논쟁을 이끈 8명의 핵심 학자들.</p>
+
+<div class="scholar-grid">
+  <div class="scholar-card">
+    <div class="sc-name">B.B. 워필드</div>
+    <div class="sc-dates">1851–1921 | 프린스턴 신학교</div>
+    <div class="sc-desc">현대적 무오성 교리의 체계화자. 완전영감설과 유기적 영감론을 결합. 흥미롭게도 유신론적 진화와 무오성이 양립 가능하다고 보았음.</div>
+    <div class="sc-works">대표작: <em>The Inspiration and Authority of the Bible</em> (1948)</div>
+    <span class="sc-tag">완전무오설</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">칼 바르트</div>
+    <div class="sc-dates">1886–1968 | 바젤 대학교</div>
+    <div class="sc-desc">20세기 최대의 신학자. 자유주의와 근본주의 모두 비판. 그리스도 중심적 성경 해석. 성경을 하나님 말씀의 '증언'으로 이해.</div>
+    <div class="sc-works">대표작: <em>Church Dogmatics</em> I/1–2 (1932–1938)</div>
+    <span class="sc-tag">신정통주의</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">N.T. 라이트</div>
+    <div class="sc-dates">1948– | 세인트앤드루스 대학교</div>
+    <div class="sc-desc">신약학·성경신학의 거장. "성경의 권위"를 하나님의 서사적 구원 계획 안에서 재이해. 역사적 예수 연구와 바울 신학 새 관점으로 유명.</div>
+    <div class="sc-works">대표작: <em>Scripture and the Authority of God</em> (2011)</div>
+    <span class="sc-tag">서사적 권위론</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">피터 엔스</div>
+    <div class="sc-dates">1961– | 이스턴 대학교</div>
+    <div class="sc-desc">성육신 유비로 성경의 인간적 특성 강조. 웨스트민스터 신학교 해임 논란(2008). 현재 BioLogos에서 EC와 성경 권위의 재해석 작업 계속.</div>
+    <div class="sc-works">대표작: <em>Inspiration and Incarnation</em> (2005)</div>
+    <span class="sc-tag">성육신 유비</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">케빈 밴후저</div>
+    <div class="sc-dates">1957– | 트리니티 복음주의신학원</div>
+    <div class="sc-desc">언어행위론을 신학에 적용하여 성경 권위를 재구성. 해석학·신학적 해석학 분야의 최고 권위자. 엔스의 유비를 비판하면서도 성경의 인간적 특성을 인정.</div>
+    <div class="sc-works">대표작: <em>Is There a Meaning in This Text?</em> (1998)</div>
+    <span class="sc-tag">언어행위론</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">켄튼 스팍스</div>
+    <div class="sc-dates">1959– | 이스턴 대학교</div>
+    <div class="sc-desc">역사비평을 복음주의적 방식으로 수용하려 한 학자. 성경의 인간적 특성과 신적 권위가 함께 존재한다고 주장. 보수적 복음주의자들의 비판을 받음.</div>
+    <div class="sc-works">대표작: <em>God's Word in Human Words</em> (2008)</div>
+    <span class="sc-tag">진보적 복음주의</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">존 월튼</div>
+    <div class="sc-dates">1952– | 휘튼 칼리지</div>
+    <div class="sc-desc">구약학·고대 근동학 전문가. 창세기를 고대 근동 문학 장르로 읽는 접근으로 창조 논쟁에 큰 영향. EC 지지자이면서 완전무오설을 유지.</div>
+    <div class="sc-works">대표작: <em>The Lost World of Genesis One</em> (2009)</div>
+    <span class="sc-tag">완전무오 + EC</span>
+  </div>
+  <div class="scholar-card">
+    <div class="sc-name">밀라드 에릭슨</div>
+    <div class="sc-dates">1932– | 베델 신학원</div>
+    <div class="sc-desc">미국 복음주의 조직신학의 대가. 완전무오설을 옹호하면서도 다양한 해석학적 방법을 포용하는 균형 잡힌 입장. 신학 교육의 표준 교재 저술.</div>
+    <div class="sc-works">대표작: <em>Christian Theology</em> 3판 (2013)</div>
+    <span class="sc-tag">복음주의 조직신학</span>
+  </div>
+</div>
+</section>
+
+<!-- S9 용어 사전 -->
+<section id="s9">
+<div class="section-title">📚 용어 사전</div>
+<p class="section-sub">이 자료에서 사용된 핵심 용어들을 정리합니다.</p>
+
+<div class="gloss-grid">
+  <div class="gloss-item">
+    <div class="gloss-term">무오성 (Inerrancy)</div>
+    <div class="gloss-def">성경이 가르치고자 하는 목적에서 오류가 없다는 주장. 완전무오설(ICBI)은 역사·과학 영역까지 포함하되, 현대 기술 정밀도의 기준은 적용하지 않음.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">무류성 (Infallibility)</div>
+    <div class="gloss-def">성경이 신앙적 목적(구원)에서 결코 실패하지 않는다는 개념. 무오성보다 약한 주장으로, 역사·과학 세부사항의 오류 가능성을 허용하는 경우가 많음.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">원본 (Autographs)</div>
+    <div class="gloss-def">성경 저자들이 직접 기록한 원래 문서. 현재 존재하지 않음. 완전무오설은 원본의 무오성을 주장하며, 필사본(MSS)의 오류는 별개 문제로 다룸.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">조절 원리 (Accommodation)</div>
+    <div class="gloss-def">칼빈의 원리. 하나님이 인간의 이해 수준에 맞춰 당대 언어와 개념으로 말씀하셨다. EC와 무오성 양립의 핵심 신학 도구.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">성령의 내적 증거 (Testimonium)</div>
+    <div class="gloss-def">칼빈이 강조한 개념. 성경의 권위에 대한 궁극적 확신은 외부 증거가 아니라 성령 하나님이 독자의 마음에 직접 증언하심으로 온다.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">언어행위론 (Speech-Act Theory)</div>
+    <div class="gloss-def">J.L. 오스틴 발전, 밴후저가 신학 적용. 발화내용(locution)·발화의도(illocution)·발화효과(perlocution)의 세 층위로 성경 텍스트를 분석.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">성육신 유비 (Incarnational Analogy)</div>
+    <div class="gloss-def">피터 엔스. 성경을 예수님처럼 신적-인간적 이중 본성을 가진 것으로 이해. 성경의 인간적 한계를 권위 훼손 없이 인정하는 틀.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">점진적 계시 (Progressive Revelation)</div>
+    <div class="gloss-def">하나님의 계시가 구약에서 신약으로 점진적으로 심화·완성된다는 원리. 예수님이 "옛 사람은 이렇게 들었으나 나는 너희에게 이르노니"로 표현.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">정경 (Canon)</div>
+    <div class="gloss-def">헬라어 κανών(기준). 신앙 공동체가 권위 있는 것으로 인정한 문서들의 모음. 교회가 권위를 부여한 것이 아니라 이미 권위 있는 것을 인정한 것.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">해석학적 순환 (Hermeneutical Circle)</div>
+    <div class="gloss-def">본문을 이해하려면 전체가 필요하고, 전체를 이해하려면 부분이 필요한 순환. 해석은 순전히 중립적이지 않으며, 무오한 성경도 완벽한 해석을 보장하지 않음.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">헤렘 (הֵרֶם, Herem)</div>
+    <div class="gloss-def">구약에서 "성전(聖戰) 진멸" 명령. 신 7장 등. 고대 근동 전쟁 문학의 과장 수사법으로 보는 해석과 점진적 계시로 이해하는 해석이 병존.</div>
+  </div>
+  <div class="gloss-item">
+    <div class="gloss-term">Sola Scriptura</div>
+    <div class="gloss-def">라틴어 "오직 성경". 종교개혁의 핵심 원리. 성경이 신앙과 실천의 최고 권위라는 주장. 교회 전통이나 교황의 권위보다 성경이 우선.</div>
+  </div>
+</div>
+</section>
+
+<!-- S10 토론 논제 -->
+<section id="s10">
+<div class="section-title">💬 토론 논제</div>
+<p class="section-sub">이 자료를 바탕으로 깊이 있는 신학적 토론을 위한 논제들입니다.</p>
+
+<div class="discuss-grid">
+  <div class="discuss-card">
+    <div class="discuss-num">논제 01</div>
+    <div class="discuss-q">시카고 선언(1978)은 EC를 지지하는 신학자가 서명할 수 있는가?</div>
+    <div class="discuss-hint">장르 인정(Art. XIII), 관찰자 언어, 현대 정밀도 기준 거부 등의 조항을 중심으로. 창세기 1-11장의 장르 판단이 핵심 변수.</div>
+  </div>
+  <div class="discuss-card">
+    <div class="discuss-num">논제 02</div>
+    <div class="discuss-q">피터 엔스의 성육신 유비는 성경 무오성을 훼손하는가 아니면 재구성하는가?</div>
+    <div class="discuss-hint">예수님의 인성에 죄가 없다는 점과, 성경의 인간적 특성에 오류가 있을 수 있다는 점의 유비적 긴장을 분석하라.</div>
+  </div>
+  <div class="discuss-card">
+    <div class="discuss-num">논제 03</div>
+    <div class="discuss-q">정경의 형성 과정이 성경의 무오성 주장에 어떤 문제를 제기하는가?</div>
+    <div class="discuss-hint">인간의 판단(공의회, 사도성 기준)이 무오한 정경을 결정했다면, 그 결정 과정 자체의 무오성은? 교회 권위와 성경 권위의 관계.</div>
+  </div>
+  <div class="discuss-card">
+    <div class="discuss-num">논제 04</div>
+    <div class="discuss-q">칼 바르트의 "성경은 하나님 말씀이 된다"는 입장이 성경 권위를 주관화하는가?</div>
+    <div class="discuss-hint">에반젤리칼의 비판: 성경 권위가 독자의 경험에 의존하게 되면 객관성이 사라진다. 바르트 지지자: 성령의 역사 없이 성경 읽기가 가능한가?</div>
+  </div>
+  <div class="discuss-card">
+    <div class="discuss-num">논제 05</div>
+    <div class="discuss-q">헤렘 전쟁 명령(신 7장)의 가장 신학적으로 정직한 해석은 무엇인가?</div>
+    <div class="discuss-hint">과장 수사법(Paul Copan), 점진적 계시(Wright), 신학적 상징(Seibert) 세 접근을 비교하고 무오성 주장과의 정합성을 평가하라.</div>
+  </div>
+  <div class="discuss-card">
+    <div class="discuss-num">논제 06</div>
+    <div class="discuss-q">"해석학적 순환"은 성경 무오성 주장을 근본적으로 불안정하게 만드는가?</div>
+    <div class="discuss-hint">무오한 성경도 인간이 해석한다. 어떤 해석도 완벽하지 않다면, 무오성 주장의 실천적 의미는? Reformed Epistemology(Plantinga)의 답변도 고려.</div>
+  </div>
+</div>
+</section>
+
+
+<!-- S11 레퍼런스 -->
+<section id="s11">
+<div class="section-title">📎 학술 레퍼런스</div>
+<p class="section-sub">이 자료에서 다룬 논의의 근거 문헌입니다. 모든 서지정보는 직접 검증되었습니다.</p>
+
+<div class="card">
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 1차 문헌 — 공식 선언문</div>
+  <div class="ref-item"><span class="ref-num">1.</span> International Council on Biblical Inerrancy. <em>Chicago Statement on Biblical Inerrancy</em>. Chicago: ICBI, 1978. [19개 긍정·부정 조항. 오늘날에도 복음주의 무오성 논의의 기준 문서.]</div>
+  <div class="ref-item"><span class="ref-num">2.</span> International Council on Biblical Inerrancy. <em>Chicago Statement on Biblical Hermeneutics</em>. Chicago: ICBI, 1982. [1978년 선언의 후속 문서. 해석학적 원칙 25개 조항.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 2차 문헌 — 고전·종교개혁 자료</div>
+  <div class="ref-item"><span class="ref-num">3.</span> Augustine of Hippo. <em>The Literal Meaning of Genesis</em> (<em>De Genesi ad Litteram</em>). Translated by John Hammond Taylor. 2 vols. Ancient Christian Writers 41–42. New York: Newman Press, 1982. [특히 Book I, Chapter 19 — 성경과 자연과학에 관한 아우구스티누스의 경고.]</div>
+  <div class="ref-item"><span class="ref-num">4.</span> Calvin, John. <em>Institutes of the Christian Religion</em>. 2 vols. Translated by Ford Lewis Battles. Library of Christian Classics 20–21. Philadelphia: Westminster Press, 1960. [조절 원리는 I.6–9, 성령의 내적 증거는 I.7–8.]</div>
+  <div class="ref-item"><span class="ref-num">5.</span> Calvin, John. <em>Commentary on Genesis</em>. Translated by John King. Grand Rapids: Baker Books, 2003. [창세기 1:6 주석 — "라키아"와 조절 원리 적용의 고전적 예시.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 현대 복음주의 무오성 논의</div>
+  <div class="ref-item"><span class="ref-num">6.</span> Warfield, Benjamin B., and Archibald A. Hodge. "Inspiration." <em>Presbyterian Review</em> 2 (1881): 225–260. [현대 무오성 교리의 출발점이 된 공동 논문.]</div>
+  <div class="ref-item"><span class="ref-num">7.</span> Warfield, Benjamin B. <em>The Inspiration and Authority of the Bible</em>. Edited by Samuel G. Craig. Philadelphia: Presbyterian and Reformed Publishing, 1948. [워필드의 영감론·무오성 논문 모음집. 사후 편집 출판.]</div>
+  <div class="ref-item"><span class="ref-num">8.</span> Carson, D.A., and John D. Woodbridge, eds. <em>Scripture and Truth</em>. Grand Rapids: Zondervan, 1983. [ICBI 서명 학자들의 무오성 옹호 논문집. 시카고 선언의 학문적 배경.]</div>
+  <div class="ref-item"><span class="ref-num">9.</span> Erickson, Millard J. <em>Christian Theology</em>. 3rd ed. Grand Rapids: Baker Academic, 2013. [복음주의 조직신학의 표준 교재. 성경론 부분(Chapters 10–11)이 무오성을 균형 있게 다룸.]</div>
+  <div class="ref-item"><span class="ref-num">10.</span> Pinnock, Clark H. <em>The Scripture Principle: Reclaiming the Full Authority of the Bible</em>. 2nd ed. Grand Rapids: Baker Books, 2006. [보수적 복음주의에서 진보적 방향으로 이동한 핀녹의 성경론. 무오성 논쟁의 스펙트럼 이해에 유용.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 신정통주의와 성경 권위</div>
+  <div class="ref-item"><span class="ref-num">11.</span> Barth, Karl. <em>Church Dogmatics</em>, Vol. I/1: <em>The Doctrine of the Word of God</em>. Translated by G.W. Bromiley and T.F. Torrance. Edinburgh: T&amp;T Clark, 1975. [바르트 성경론의 핵심 내용. §§4–7에서 말씀의 세 형태(선포된 말씀, 기록된 말씀, 계시된 말씀)를 다룸.]</div>
+  <div class="ref-item"><span class="ref-num">12.</span> Wright, N.T. <em>Scripture and the Authority of God: How to Read the Bible Today</em>. New York: HarperOne, 2011. [영국 출판본 제목은 <em>The Last Word</em>(2005). 성경 권위를 서사적·역동적 방식으로 재구성.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 영감론·해석학</div>
+  <div class="ref-item"><span class="ref-num">13.</span> Enns, Peter. <em>Inspiration and Incarnation: Evangelicals and the Problem of the Old Testament</em>. Grand Rapids: Baker Academic, 2005. [성육신 유비를 중심으로 성경의 인간적 특성을 다룬 논쟁적 저작. 2015년 10주년 개정판 출간.]</div>
+  <div class="ref-item"><span class="ref-num">14.</span> Enns, Peter. <em>The Bible Tells Me So: Why Defending Scripture Has Made Us Unable to Read It</em>. New York: HarperOne, 2014. [일반 독자를 위한 대중 신학서. 어려운 본문들을 정직하게 다룸.]</div>
+  <div class="ref-item"><span class="ref-num">15.</span> Vanhoozer, Kevin J. <em>Is There a Meaning in This Text? The Bible, the Reader, and the Morality of Literary Knowledge</em>. Grand Rapids: Zondervan, 1998. [언어행위론을 신학적 해석학에 적용한 대작. 탈근대 해석학 비판 포함.]</div>
+  <div class="ref-item"><span class="ref-num">16.</span> Vanhoozer, Kevin J. <em>The Drama of Doctrine: A Canonical-Linguistic Approach to Christian Theology</em>. Louisville: Westminster John Knox, 2005. [정경-언어학적 신학 방법론. 성경을 "신의 드라마"로 이해.]</div>
+  <div class="ref-item"><span class="ref-num">17.</span> Sparks, Kenton L. <em>God's Word in Human Words: An Evangelical Appropriation of Critical Biblical Scholarship</em>. Grand Rapids: Baker Academic, 2008. [역사비평을 복음주의적으로 수용하려는 시도. 보수 진영의 비판 포함.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 창조·EC·성경 해석</div>
+  <div class="ref-item"><span class="ref-num">18.</span> Walton, John H. <em>The Lost World of Genesis One: Ancient Cosmology and the Origins Debate</em>. Downers Grove: IVP Academic, 2009. [창세기 1장을 물질적 기원이 아닌 기능적 기원 서술로 읽는 획기적 연구. EC와 무오성 논의의 필독서.]</div>
+  <div class="ref-item"><span class="ref-num">19.</span> Walton, John H., and Tremper Longman III. <em>The Lost World of the Flood: Mythology, Theology, and the Deluge Debate</em>. Downers Grove: IVP Academic, 2018. [창세기 홍수 기사를 고대 근동 문학 장르로 읽는 연구.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">📜 정경론</div>
+  <div class="ref-item"><span class="ref-num">20.</span> McDonald, Lee Martin. <em>The Biblical Canon: Its Origin, Transmission, and Authority</em>. Peabody: Hendrickson, 2007. [정경 형성 과정에 관한 포괄적 학술 연구. 1차 자료와 2차 문헌을 광범위하게 다룸.]</div>
+</div>
+
+<div class="ref-section">
+  <div class="ref-section-title">🌐 온라인 학술 자료</div>
+  <div class="ref-item"><span class="ref-num">21.</span> BioLogos Foundation. <em>biologos.org</em>. [EC 지지 학자들의 성경·신학·과학 관련 학술 아티클 아카이브. 성경 무오성과 EC의 양립 가능성을 다루는 다수의 논문 수록.]</div>
+  <div class="ref-item"><span class="ref-num">22.</span> The Gospel Coalition. <em>thegospelcoalition.org</em>. [보수적 복음주의 관점에서 시카고 선언 및 무오성을 옹호하는 학술·대중 자료.]</div>
+</div>
+
+<div class="warn-box" style="margin-top:16px;">
+<strong>⚠️ 레퍼런스 사용 안내:</strong> 모든 서지사항은 직접 확인된 출판물입니다. 특히 고전 문헌(아우구스티누스, 칼빈)의 경우 영어 번역본 기준으로 표기했습니다. 토론·논문 작성 시 해당 판본의 쪽수를 직접 확인하시기 바랍니다.
+</div>
+</div>
+</section>
+
+<!-- S12 퀴즈 -->
+<section id="s12">
+<div class="section-title">📝 심화 퀴즈</div>
+<p class="section-sub">12문제로 대학생 버전의 핵심 논점을 검토합니다.</p>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">1. B.B. 워필드와 A.A. 호지가 무오성을 강조한 역사적 맥락은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(1,'a','b')"><span>a</span> 갈릴레오 사건으로 인한 과학-교회 갈등에 반응하여</div>
+    <div class="quiz-opt" onclick="checkHQ(1,'b','b')"><span>b</span> 19세기 자유주의 신학과 역사비평의 도전에 맞서 성경의 권위를 수호하기 위해</div>
+    <div class="quiz-opt" onclick="checkHQ(1,'c','b')"><span>c</span> 종교개혁의 <em>sola scriptura</em> 원리를 처음 수립하기 위해</div>
+    <div class="quiz-opt" onclick="checkHQ(1,'d','b')"><span>d</span> 로마 가톨릭의 교황 무오설에 반론하기 위해</div>
+  </div>
+  <div id="hqfb1" class="quiz-fb">✅ 맞습니다. 슐라이어마허에서 하르낙으로 이어지는 자유주의 신학과 벨하우젠의 문서가설(JEDP)이 성경의 역사적 신뢰성을 공격하자, 워필드와 호지는 1881년 논문에서 무오성 교리를 체계화했습니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">2. 시카고 선언(1978) Article XIII가 무오성과 양립 가능하다고 명시한 성경 현상이 아닌 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(2,'a','d')"><span>a</span> 현대적 기술 정밀도의 결여</div>
+    <div class="quiz-opt" onclick="checkHQ(2,'b','d')"><span>b</span> 과장법(hyperbole)과 어림수</div>
+    <div class="quiz-opt" onclick="checkHQ(2,'c','d')"><span>c</span> 자유 인용(free citations)</div>
+    <div class="quiz-opt" onclick="checkHQ(2,'d','d')"><span>d</span> 신학적 교리의 오류</div>
+  </div>
+  <div id="hqfb2" class="quiz-fb">✅ 맞습니다. Article XIII는 문학적 관습과 고대 표현 방식이 무오성을 부정하지 않는다고 명시하지만, 신학적 교리의 오류까지 허용하지는 않습니다. 이것이 제한무오설(d 신학에서만 무오)과의 차이점입니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">3. 칼 바르트의 성경관을 가장 정확하게 표현한 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(3,'a','b')"><span>a</span> 성경 자체가 직접적으로 하나님의 말씀이다.</div>
+    <div class="quiz-opt" onclick="checkHQ(3,'b','b')"><span>b</span> 성경은 오류 가능한 인간의 글이지만, 성령 안에서 읽을 때 하나님 말씀이 된다(becomes).</div>
+    <div class="quiz-opt" onclick="checkHQ(3,'c','b')"><span>c</span> 성경은 완전히 신화이며 역사적 사실을 담지 않는다.</div>
+    <div class="quiz-opt" onclick="checkHQ(3,'d','b')"><span>d</span> 성경의 권위는 교회 전통에서 온다.</div>
+  </div>
+  <div id="hqfb3" class="quiz-fb">✅ 맞습니다. 바르트의 신정통주의는 성경을 하나님 말씀의 세 형태(계시된 말씀=그리스도, 선포된 말씀=설교, 기록된 말씀=성경) 중 하나로 보면서, 성경은 하나님 말씀에 대한 인간적 증언이라고 이해합니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">4. 피터 엔스의 성육신 유비에 대한 케빈 밴후저의 비판으로 가장 적절한 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(4,'a','c')"><span>a</span> 엔스가 성경의 신적 기원을 부정한다.</div>
+    <div class="quiz-opt" onclick="checkHQ(4,'b','c')"><span>b</span> 성육신은 성경과 유비될 수 없다.</div>
+    <div class="quiz-opt" onclick="checkHQ(4,'c','c')"><span>c</span> 예수님의 인성에는 죄가 없지만 엔스의 유비는 성경의 인간적 특성에 오류를 허용하므로 유비가 정확하지 않다.</div>
+    <div class="quiz-opt" onclick="checkHQ(4,'d','c')"><span>d</span> 성육신 유비는 너무 보수적이다.</div>
+  </div>
+  <div id="hqfb4" class="quiz-fb">✅ 맞습니다. 밴후저는 예수님의 인성(humanity without sin)과 엔스가 말하는 성경의 인간성(humanity with possible errors)이 유비적으로 다르다고 지적합니다. 예수님의 인성이 죄 없이 완전했다면, 성경의 인간적 특성도 오류 없이 완전해야 유비가 성립한다는 논리입니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">5. 고대 교회 정경 결정의 기준이 아닌 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(5,'a','d')"><span>a</span> 사도성 (Apostolicity)</div>
+    <div class="quiz-opt" onclick="checkHQ(5,'b','d')"><span>b</span> 정통성 (Orthodoxy)</div>
+    <div class="quiz-opt" onclick="checkHQ(5,'c','d')"><span>c</span> 보편성 (Catholicity)</div>
+    <div class="quiz-opt" onclick="checkHQ(5,'d','d')"><span>d</span> 현대성 (Modernity)</div>
+  </div>
+  <div id="hqfb5" class="quiz-fb">✅ 맞습니다. 고대 교회는 사도성(사도나 그 제자의 저작), 정통성(핵심 기독교 교리와의 일치), 보편성(광범위한 교회 공동체에서 수용)을 기준으로 정경을 결정했습니다. 현대성은 관련 기준이 아닙니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">6. 케빈 밴후저의 언어행위론에서 창세기 1장의 발화의도(illocution)는?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(6,'a','c')"><span>a</span> 우주의 물리적 기원과 연대를 기술하는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(6,'b','c')"><span>b</span> 고대 근동 창조 신화에 반박하는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(6,'c','c')"><span>c</span> 야훼 하나님이 유일한 창조주이며 창조가 선하다는 신학적 진리를 선포하는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(6,'d','c')"><span>d</span> 이스라엘 민족의 창조 기원 신화를 기록하는 것</div>
+  </div>
+  <div id="hqfb6" class="quiz-fb">✅ 맞습니다. 언어행위론 관점에서 창세기 1장의 발화의도(what God is doing in saying)는 신학적 선포입니다. 이 발화의도가 무오하며, 과학적 발화내용(specific mechanism)의 정확성 여부는 별개의 판단 기준입니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">7. 아우구스티누스가 <em>De Genesi ad Litteram</em> I.19에서 경고한 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(7,'a','b')"><span>a</span> 창세기를 알레고리로만 해석하는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(7,'b','b')"><span>b</span> 기독교인이 성경을 근거로 과학적으로 터무니없는 주장을 하여 불신자들이 복음을 비웃게 만드는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(7,'c','b')"><span>c</span> 이교도 철학을 성경 해석에 사용하는 것</div>
+    <div class="quiz-opt" onclick="checkHQ(7,'d','b')"><span>d</span> 창세기의 문자적 의미를 완전히 무시하는 것</div>
+  </div>
+  <div id="hqfb7" class="quiz-fb">✅ 맞습니다. 아우구스티누스는 무오성을 강하게 믿으면서도, 성경 이름으로 자연과학에 대해 어리석은 주장을 하면 불신자들이 성경 전체를 경멸하게 된다고 경고했습니다. 이것은 EC 논의에서 자주 인용되는 고전적 통찰입니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">8. B.B. 워필드가 유신론적 진화에 대해 취한 입장은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(8,'a','c')"><span>a</span> 완전무오설을 주장했기 때문에 진화를 완전히 거부했다.</div>
+    <div class="quiz-opt" onclick="checkHQ(8,'b','c')"><span>b</span> 진화론과 성경은 절대 양립할 수 없다고 주장했다.</div>
+    <div class="quiz-opt" onclick="checkHQ(8,'c','c')"><span>c</span> 칼빈주의자가 유신론적 진화를 수용하는 것을 막는 것은 없다고 보았다.</div>
+    <div class="quiz-opt" onclick="checkHQ(8,'d','c')"><span>d</span> 진화론을 완전히 지지했다.</div>
+  </div>
+  <div id="hqfb8" class="quiz-fb">✅ 맞습니다. 현대 무오성 교리의 아버지 워필드는 1915년 글에서 칼빈주의 신학이 유신론적 진화와 양립 가능하다는 입장을 표명했습니다. 이것은 완전무오설과 EC 사이에 역사적 공간이 있었음을 보여주는 중요한 사례입니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">9. 제한무오설(Limited Inerrancy)에 대한 D.A. 카슨의 핵심 비판은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(9,'a','b')"><span>a</span> 제한무오설은 너무 보수적이다.</div>
+    <div class="quiz-opt" onclick="checkHQ(9,'b','b')"><span>b</span> 신학 주장과 역사 주장을 깔끔하게 분리하는 것이 불가능하다. 예수의 부활은 역사적 사건이자 신학적 주장이다.</div>
+    <div class="quiz-opt" onclick="checkHQ(9,'c','b')"><span>c</span> 제한무오설은 성경의 신적 영감을 부정한다.</div>
+    <div class="quiz-opt" onclick="checkHQ(9,'d','b')"><span>d</span> 제한무오설은 루터 이후 전통에 없었다.</div>
+  </div>
+  <div id="hqfb9" class="quiz-fb">✅ 맞습니다. 카슨은 역사와 신학을 분리하는 것이 인위적이라고 비판합니다. 예수님의 부활, 출애굽, 아담의 역사성 등은 역사적 사실 주장이면서 동시에 기독교 신학의 핵심입니다. 이 분리가 무너지면 제한무오설의 경계가 없어집니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">10. 칼빈의 조절 원리가 창세기 1:6의 라키아(<span class="heb" style="font-size:1rem;">רָקִיעַ</span>) 해석에서 시사하는 것은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(10,'a','c')"><span>a</span> 고대 이스라엘인들이 현대 기상학을 이미 알고 있었다.</div>
+    <div class="quiz-opt" onclick="checkHQ(10,'b','c')"><span>b</span> 창세기를 기록한 모세는 오류를 범했다.</div>
+    <div class="quiz-opt" onclick="checkHQ(10,'c','c')"><span>c</span> 하나님이 당대 독자들의 우주관 언어로 말씀하셨으므로 현대 과학 기준으로 평가하는 것은 적절하지 않다.</div>
+    <div class="quiz-opt" onclick="checkHQ(10,'d','c')"><span>d</span> 창세기는 전혀 신뢰할 수 없는 문서다.</div>
+  </div>
+  <div id="hqfb10" class="quiz-fb">✅ 맞습니다. 칼빈은 라키아를 설명하면서 모세가 "학식 있는 자가 아닌 대중"을 위해 썼다고 했습니다. 하나님의 조절은 당대 우주관 언어를 사용하는 것을 포함하며, 이것이 무오성을 훼손하지 않습니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">11. EC와 완전무오설(ICBI)의 양립 가능성 논증에서 핵심 전제는?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(11,'a','c')"><span>a</span> 진화론이 과학적으로 옳기 때문에 성경은 수정되어야 한다.</div>
+    <div class="quiz-opt" onclick="checkHQ(11,'b','c')"><span>b</span> 창세기 1-11장에는 역사적 정보가 전혀 없다.</div>
+    <div class="quiz-opt" onclick="checkHQ(11,'c','c')"><span>c</span> 창세기의 장르와 신학적 목적을 올바르게 이해하면, 과학적 메커니즘의 기술이 창세기의 진리 주장이 아님을 알 수 있다.</div>
+    <div class="quiz-opt" onclick="checkHQ(11,'d','c')"><span>d</span> 시카고 선언은 EC를 명시적으로 허용한다.</div>
+  </div>
+  <div id="hqfb11" class="quiz-fb">✅ 맞습니다. 양립 가능성의 핵심은 장르 해석에 있습니다. 창세기의 발화의도가 신학적 선포(하나님이 창조하셨다)이지 과학적 기술(어떤 메커니즘으로 창조했는가)이 아니라면, 무오성 주장과 EC는 서로 다른 영역을 다루는 것이 됩니다.</div>
+</div>
+
+<div class="quiz-wrap">
+  <div class="quiz-q">12. "해석학적 순환(Hermeneutical Circle)"이 성경 무오성 주장에 제기하는 도전은?</div>
+  <div class="quiz-opts">
+    <div class="quiz-opt" onclick="checkHQ(12,'a','b')"><span>a</span> 성경은 해석이 필요하지 않다.</div>
+    <div class="quiz-opt" onclick="checkHQ(12,'b','b')"><span>b</span> 무오한 성경을 해석하는 것은 인간이며, 어떤 해석도 무오하지 않다. 따라서 무오성이 실천적으로 무엇을 의미하는지 물어야 한다.</div>
+    <div class="quiz-opt" onclick="checkHQ(12,'c','b')"><span>c</span> 성경의 무오성은 해석학과 무관하다.</div>
+    <div class="quiz-opt" onclick="checkHQ(12,'d','b')"><span>d</span> 무오한 성경은 완벽하게 해석될 수 있다.</div>
+  </div>
+  <div id="hqfb12" class="quiz-fb">✅ 맞습니다. 텍스트의 무오성과 해석의 무오성은 다른 문제입니다. 역사 속에서 기독교인들이 같은 무오한 성경을 읽으며 다른 해석을 내놓은 것이 이를 증명합니다. 이것은 무오성 주장을 무너뜨리는 것이 아니라, 해석학적 겸손의 필요성을 시사합니다.</div>
+</div>
+
+<div class="quiz-score-box" id="hquiz-score">
+  <div class="score-big" id="hscore-display"></div>
+  <p style="margin-top:10px;font-size:.95rem;color:var(--muted);" id="hscore-msg"></p>
+</div>
+
+</section>
+
+</main>
+
+<footer style="background:var(--purple-dark);color:rgba(255,255,255,.75);text-align:center;padding:20px;font-size:.82rem;">
+  <p>이브 (성경·신학·진화생물학·고대근동 전문) | 신앙과 이성 탐구 시리즈</p>
+</footer>
+
+<script>
+// Tab switch
+function switchTab(section,panelId,btn){
+  const bar=btn.parentElement;
+  bar.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const prefix=section+'-';
+  document.querySelectorAll('[id^="'+prefix+'"]').forEach(p=>p.classList.remove('active'));
+  document.getElementById(prefix+panelId).classList.add('active');
+}
+
+// Accordion
+function toggleAcc(id){
+  const item=document.getElementById(id);
+  const body=item.querySelector('.acc-body');
+  const isOpen=item.classList.contains('open');
+  item.classList.toggle('open');
+  body.style.maxHeight=isOpen?'0':body.scrollHeight+'px';
+}
+
+// High quiz
+const hAnswers={};
+const hCorrect={1:'b',2:'d',3:'b',4:'c',5:'d',6:'c',7:'b',8:'c',9:'b',10:'c',11:'c',12:'b'};
+const hTotal=12;
+
+function checkHQ(qNum,chosen,correct){
+  if(hAnswers[qNum])return;
+  hAnswers[qNum]=chosen;
+  const wraps=document.querySelectorAll('#s12 .quiz-wrap');
+  const card=wraps[qNum-1];
+  const opts=card.querySelectorAll('.quiz-opt');
+  const letters=['a','b','c','d'];
+  opts.forEach((opt,i)=>{
+    opt.style.pointerEvents='none';
+    if(letters[i]===correct) opt.classList.add('correct');
+    else if(letters[i]===chosen) opt.classList.add('wrong');
+  });
+  const fb=document.getElementById('hqfb'+qNum);
+  if(chosen!==correct){
+    fb.textContent='❌ 틀렸습니다. 정답은 '+correct+'번입니다. '+fb.textContent.replace('✅ 맞습니다. ','');
+    fb.style.background='#ffe0d6';
+    fb.style.borderLeftColor='var(--accent)';
+  }
+  fb.classList.add('show');
+  if(Object.keys(hAnswers).length===hTotal) showHScore();
+}
+
+function showHScore(){
+  let score=0;
+  for(let k in hCorrect){ if(hAnswers[k]===hCorrect[k]) score++; }
+  const el=document.getElementById('hquiz-score');
+  document.getElementById('hscore-display').textContent=score+' / '+hTotal;
+  const msgs=['레퍼런스를 다시 살펴보세요.','좋은 시작입니다. 계속 탐구하세요.','핵심 논점을 이해하고 있습니다.','훌륭합니다! 토론 논제에 도전해보세요.','완벽합니다! 깊은 이해를 가지고 있군요.'];
+  document.getElementById('hscore-msg').textContent=msgs[Math.min(Math.floor(score/3),4)];
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// Nav scroll highlight
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-80) current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

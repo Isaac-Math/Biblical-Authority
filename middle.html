@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>성경의 무오성과 권위 — 청소년 버전</title>
+<style>
+:root {
+  --primary:#2d6a4f; --primary-light:#52b788; --primary-xlight:#d8f3dc;
+  --accent:#e76f51; --sky:#4895ef; --sky-light:#cce5ff;
+  --gold:#f4a261; --gold-light:#fde9d4;
+  --purple:#7b2d8b; --purple-light:#e8d5ed;
+  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#6c757d;
+  --radius:12px; --shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--primary-xlight);padding:0 16px;}
+.nav-inner{max-width:860px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+nav a{display:inline-block;padding:13px 14px;font-size:.82rem;font-weight:600;color:var(--muted);text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;}
+nav a.active,nav a:hover{color:var(--primary);border-bottom-color:var(--primary);}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,#4a1942 0%,#7b2d8b 60%,var(--primary) 100%);color:#fff;padding:48px 24px 36px;text-align:center;}
+.site-header h1{font-size:2rem;font-weight:800;margin-bottom:8px;}
+.site-header p{opacity:.85;font-size:.98rem;max-width:500px;margin:0 auto;line-height:1.7;}
+.home-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:6px 14px;font-size:.82rem;color:#fff;text-decoration:none;margin-bottom:18px;transition:background .2s;}
+.home-btn:hover{background:rgba(255,255,255,.28);}
+
+/* MAIN */
+main{max-width:860px;margin:0 auto;padding:36px 20px 80px;}
+section{margin-bottom:56px;}
+.section-title{font-size:1.35rem;font-weight:800;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.section-sub{font-size:.9rem;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin-bottom:16px;}
+.highlight-box{background:var(--primary-xlight);border-left:4px solid var(--primary);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.7;}
+.warn-box{background:#fff3e0;border-left:4px solid var(--gold);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.7;}
+.purple-box{background:var(--purple-light);border-left:4px solid var(--purple);border-radius:8px;padding:16px 18px;margin:12px 0;font-size:.93rem;line-height:1.7;}
+
+/* TABS */
+.tab-bar{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:16px;padding-bottom:4px;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{padding:8px 16px;border:none;border-radius:20px;font-size:.85rem;font-weight:600;cursor:pointer;background:#eee;color:var(--muted);transition:all .2s;white-space:nowrap;flex-shrink:0;}
+.tab-btn.active{background:var(--primary);color:#fff;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ACCORDION */
+details{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;}
+summary{padding:16px 20px;font-weight:700;font-size:.95rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+summary::after{content:'＋';font-size:1.1rem;color:var(--primary);}
+details[open] summary::after{content:'－';}
+.acc-body{padding:6px 20px 18px;font-size:.9rem;line-height:1.75;color:#333;}
+
+/* FLIP CARDS */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:8px;}
+.flip-card{height:200px;cursor:pointer;perspective:1000px;}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:center;padding:18px 16px;overflow:hidden;}
+.flip-front{background:var(--card);box-shadow:var(--shadow);align-items:center;text-align:center;border:2px solid var(--purple-light);}
+.flip-front::after{content:'↩ 탭해서 확인';font-size:.72rem;opacity:.65;font-weight:400;margin-top:8px;}
+.flip-back{background:var(--purple);color:#fff;transform:rotateY(180deg);align-items:flex-start;text-align:left;line-height:1.6;}
+.flip-front .card-icon{font-size:2rem;margin-bottom:8px;}
+.flip-front .card-title{font-size:.92rem;font-weight:800;color:var(--purple);}
+.flip-back .back-title{font-size:.82rem;font-weight:800;opacity:.8;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+.flip-back .back-body{font-size:.83rem;line-height:1.65;}
+
+/* PERSON CARDS */
+.person-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.person-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;border-top:4px solid var(--purple);}
+.person-name{font-size:1rem;font-weight:800;margin-bottom:4px;}
+.person-dates{font-size:.78rem;color:var(--muted);margin-bottom:10px;}
+.person-desc{font-size:.84rem;line-height:1.65;color:#444;}
+.person-tag{display:inline-block;background:var(--purple-light);color:var(--purple);border-radius:10px;padding:2px 10px;font-size:.74rem;font-weight:700;margin-top:8px;}
+
+/* QUIZ */
+.quiz-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:16px;}
+.quiz-q{font-size:.97rem;font-weight:700;margin-bottom:14px;line-height:1.6;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;cursor:pointer;border:2px solid #e9ecef;transition:all .18s;font-size:.9rem;}
+.quiz-opt:hover{border-color:var(--purple);background:var(--purple-light);}
+.quiz-opt.correct{background:#d8f3dc;border-color:var(--primary);color:var(--primary);}
+.quiz-opt.wrong{background:#ffe0d6;border-color:var(--accent);color:#c0392b;}
+.quiz-feedback{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.87rem;line-height:1.6;display:none;}
+.quiz-feedback.show{display:block;background:var(--primary-xlight);border-left:3px solid var(--primary);}
+.quiz-score{text-align:center;padding:28px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);display:none;}
+.score-num{font-size:2.8rem;font-weight:800;color:var(--primary);}
+
+/* MOBILE */
+@media(max-width:480px){
+  .site-header{padding:28px 14px 24px;}
+  .site-header h1{font-size:1.55rem;}
+  main{padding:20px 14px 60px;}
+  .card{padding:16px;}
+  .quiz-card{padding:16px;}
+  .tab-btn{font-size:.8rem;padding:7px 12px;}
+  .flip-card{height:170px;}
+  .flip-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+  .flip-front .card-icon{font-size:1.6rem;}
+  .flip-front .card-title{font-size:.85rem;}
+  .flip-back .back-body{font-size:.8rem;}
+}
+</style>
+</head>
+<body>
+
+<div style="background:#4a1942;padding:10px 20px;display:flex;align-items:center;gap:10px;">
+  <a href="index.html" style="color:#fff;text-decoration:none;font-size:.88rem;display:flex;align-items:center;gap:6px;">🏠 홈으로</a>
+  <span style="color:rgba(255,255,255,.4);font-size:.8rem;">|</span>
+  <span style="color:rgba(255,255,255,.7);font-size:.83rem;">성경의 무오성과 권위 — 청소년 버전</span>
+</div>
+
+<div class="site-header">
+  <h1>📜 성경의 무오성과 권위</h1>
+  <p>청소년 버전 — 성경은 어떻게 신뢰할 수 있는가?</p>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#s0">도입</a>
+    <a href="#s1">무오성</a>
+    <a href="#s2">영감론</a>
+    <a href="#s3">어려운 본문</a>
+    <a href="#s4">권위의 근거</a>
+    <a href="#s5">EC와 무오성</a>
+    <a href="#s6">주요 인물</a>
+    <a href="#s7">퀴즈</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- S0 도입 -->
+<section id="s0">
+<div class="section-title">🌟 도입</div>
+<p class="section-sub">"성경이 틀렸다는 말인가요?" — 가장 흔한 오해에서 시작합니다.</p>
+
+<div class="card">
+  <p style="font-size:.95rem;line-height:1.8;margin-bottom:14px;">
+  진화적 창조(EC)를 배우고 나면 많은 사람들이 이런 질문을 합니다: <strong>"창세기가 문자 그대로 사실이 아니라면, 성경을 믿어도 되는 건가요?"</strong> 이 질문은 아주 중요하고 진지한 질문입니다.
+  </p>
+  <p style="font-size:.95rem;line-height:1.8;">
+  이 자료는 그 질문에 정직하게 답합니다. 성경의 <strong>무오성(Inerrancy)</strong>이란 무엇인지, 성경의 <strong>권위</strong>는 어디서 오는지, 그리고 어려운 본문들을 어떻게 다루는지를 함께 살펴봅니다.
+  </p>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('intro','mis1',this)">오해 1</button>
+  <button class="tab-btn" onclick="switchTab('intro','mis2',this)">오해 2</button>
+  <button class="tab-btn" onclick="switchTab('intro','mis3',this)">오해 3</button>
+</div>
+
+<div id="intro-mis1" class="tab-panel active">
+  <div class="warn-box">
+  <strong>❌ 오해 1: "무오성 = 성경의 모든 문장이 현대 과학 기준으로 정확하다"</strong><br><br>
+  많은 사람들이 무오성을 이렇게 이해합니다. 하지만 이것은 무오성의 전통적 정의가 아닙니다. 무오성은 <em>성경이 가르치고자 하는 목적에서 오류가 없다</em>는 뜻입니다. 창세기가 우주론을 가르치는 책이 아니라 신학을 가르치는 책이라면, 과학적 정밀도를 기준으로 평가하는 것은 잘못된 잣대입니다.
+  </div>
+</div>
+<div id="intro-mis2" class="tab-panel">
+  <div class="warn-box">
+  <strong>❌ 오해 2: "EC를 받아들이면 성경을 믿지 않는 것이다"</strong><br><br>
+  실제로 많은 복음주의 학자들 — 시카고 선언(1978)에 서명한 학자들 포함 — 이 EC나 유신론적 진화를 지지합니다. 성경의 무오성과 진화론 수용은 논리적으로 양립 가능합니다. 핵심은 창세기의 장르(신학적 선포)를 올바르게 이해하는 것입니다.
+  </div>
+</div>
+<div id="intro-mis3" class="tab-panel">
+  <div class="warn-box">
+  <strong>❌ 오해 3: "성경이 무오하다면 해석의 차이가 있을 수 없다"</strong><br><br>
+  무오한 성경을 인간이 완벽하게 해석할 수는 없습니다. 오류 없는 텍스트와 오류 없는 해석은 다른 문제입니다. 역사 속에서 기독교 신학자들이 같은 성경을 읽으면서도 다양한 해석을 내놓은 것이 바로 이 때문입니다.
+  </div>
+</div>
+</section>
+
+
+<!-- S1 무오성 -->
+<section id="s1">
+<div class="section-title">📖 무오성이란 무엇인가</div>
+<p class="section-sub">무오성은 하나의 단일한 입장이 아닙니다. 스펙트럼을 살펴봅니다.</p>
+
+<div class="highlight-box">
+<strong>핵심 구분:</strong> <strong>무오성(Inerrancy)</strong>은 "성경에 오류가 없다", <strong>무류성(Infallibility)</strong>은 "성경은 실패하지 않는다(목적을 이룬다)"는 뜻입니다. 무오성이 더 강한 주장이며, 무류성은 신앙·구원에 관한 목적에 집중합니다.
+</div>
+
+<p style="font-size:.9rem;color:var(--muted);margin-bottom:12px;">카드를 탭해서 각 입장의 핵심을 확인하세요.</p>
+
+<div class="flip-grid">
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <span class="card-icon">✍️</span>
+        <span class="card-title">축자영감설</span>
+        <span style="font-size:.75rem;color:var(--muted);margin-top:4px;">Verbal Plenary Inspiration</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-title">축자영감설</div>
+        <div class="back-body">성경의 모든 단어가 하나님께 영감받았다. 가장 강한 입장. 성경의 문자 하나하나가 신적 권위를 지닌다고 봄. 비판: 저자의 인간적 개성과 문체를 어떻게 설명하는가?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <span class="card-icon">🔒</span>
+        <span class="card-title">완전무오설</span>
+        <span style="font-size:.75rem;color:var(--muted);margin-top:4px;">Complete Inerrancy</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-title">완전무오설 (ICBI)</div>
+        <div class="back-body">신학뿐 아니라 역사·과학 진술에서도 오류가 없다. 1978년 시카고 선언의 공식 입장. 단, 장르와 문학적 관습을 인정하여 과학 교과서적 정밀도는 요구하지 않음.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <span class="card-icon">⚖️</span>
+        <span class="card-title">제한무오설</span>
+        <span style="font-size:.75rem;color:var(--muted);margin-top:4px;">Limited Inerrancy</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-title">제한무오설</div>
+        <div class="back-body">성경의 신앙·도덕적 가르침에서만 오류가 없다. 역사·과학의 세부사항은 오류가 있을 수 있다. 복음주의와 자유주의 사이의 중간 입장. 많은 개혁주의 학자들이 비판.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <span class="card-icon">🎯</span>
+        <span class="card-title">무류성</span>
+        <span style="font-size:.75rem;color:var(--muted);margin-top:4px;">Infallibility</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-title">무류성 (Infallibility)</div>
+        <div class="back-body">성경은 구원을 이루는 목적에서 결코 실패하지 않는다. '오류 없음'보다 '실패 없음'에 초점. 무오성보다 약한 주장이지만, 성경의 신뢰성을 충분히 지킨다고 봄. 많은 영국 복음주의자들이 선호.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <span class="card-icon">🌊</span>
+        <span class="card-title">신정통주의</span>
+        <span style="font-size:.75rem;color:var(--muted);margin-top:4px;">Neo-orthodoxy (Barth)</span>
+      </div>
+      <div class="flip-back">
+        <div class="back-title">신정통주의</div>
+        <div class="back-body">칼 바르트: 성경은 하나님 말씀의 인간적 증언이며, 신앙으로 읽을 때 하나님 말씀이 "된다." 성경 자체는 오류 가능한 인간의 글이지만, 하나님이 그것을 통해 말씀하신다. 에반젤리칼에게 비판 받음.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S2 영감론 -->
+<section id="s2">
+<div class="section-title">✨ 성경은 어떻게 쓰여졌나</div>
+<p class="section-sub">영감(Inspiration)이란 무엇인지, 다양한 이해를 살펴봅니다.</p>
+
+<div class="highlight-box">
+<strong>딤후 3:16</strong> — "모든 성경은 하나님의 감동으로 된 것으로..."<br>
+헬라어: <em>πᾶσα γραφὴ θεόπνευστος</em> (theopneustos = God-breathed, 하나님의 호흡).<br>
+성경 저자들이 하나님께 영감받아 기록했다는 것은 기독교의 공통 고백입니다. 문제는 그 영감이 어떻게 작동했냐입니다.
+</div>
+
+<details>
+<summary>구술 받아쓰기 이론 (Dictation Theory)</summary>
+<div class="acc-body">
+하나님이 마치 받아쓰기를 시키듯 저자에게 정확한 단어를 불러줬다는 이론. 하지만 성경의 각 책마다 저자의 문체·어휘·강조점이 뚜렷이 다릅니다. 바울의 편지와 요한계시록은 전혀 다른 문체입니다. 오늘날 대부분의 신학자들은 이 단순한 형태를 지지하지 않습니다.
+</div>
+</details>
+
+<details>
+<summary>역동적 영감 (Dynamic Inspiration)</summary>
+<div class="acc-body">
+하나님이 저자의 생각·감정·의지를 인도하셨지만, 구체적인 단어 선택은 저자의 자유로운 인간적 능력을 통해 이루어졌다는 입장. 신적 영감과 인간 저자의 개성·문체를 모두 설명할 수 있습니다. 많은 복음주의 신학자들이 지지.
+</div>
+</details>
+
+<details>
+<summary>성육신 유비 (Incarnational Analogy) — 피터 엔스</summary>
+<div class="acc-body">
+성경은 예수 그리스도처럼 신적 기원과 인간적 특성을 동시에 지닌다는 접근. 예수님이 완전한 하나님이면서 완전한 인간이셨듯, 성경도 완전히 신적이면서 완전히 인간적이다. 이 때문에 성경은 저자의 시대적 한계, 인간적 표현, 심지어 문화적 오류처럼 보이는 것들을 담을 수 있다. 진보적 복음주의자들이 지지.
+</div>
+</details>
+
+<details>
+<summary>칼빈의 조절 원리 (Accommodation) — EC와의 연결</summary>
+<div class="acc-body">
+하나님은 인간 수준에 맞춰(accommodate) 말씀하셨다. 창세기의 우주론적 표현들은 고대 독자들이 이해할 수 있는 언어로 쓰여진 것이지, 현대 과학적 설명을 의도한 것이 아니다. 칼빈 자신은 창세기 1장을 읽으며 "하나님이 아이에게 말하듯 우리에게 말씀하신다"고 했습니다. 이 원리는 EC와 무오성을 연결하는 핵심 다리입니다.
+</div>
+</details>
+</section>
+
+<!-- S3 어려운 본문들 -->
+<section id="s3">
+<div class="section-title">⚠️ 어려운 본문들</div>
+<p class="section-sub">성경에는 회피하지 않고 직면해야 할 본문들이 있습니다.</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('hard','h1',this)">역사적 문제</button>
+  <button class="tab-btn" onclick="switchTab('hard','h2',this)">과학적 표현</button>
+  <button class="tab-btn" onclick="switchTab('hard','h3',this)">도덕적 문제</button>
+</div>
+
+<div id="hard-h1" class="tab-panel active">
+<div class="card">
+  <p style="font-size:.9rem;font-weight:700;margin-bottom:10px;">예시: 솔로몬의 말(馬) 수</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;text-align:center;">
+      <div style="font-weight:700;color:var(--primary);margin-bottom:4px;">열왕기상 4:26</div>
+      <div style="font-size:1.4rem;font-weight:800;">40,000</div>
+      <div style="color:var(--muted);">마구간의 말</div>
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;text-align:center;">
+      <div style="font-weight:700;color:var(--purple);margin-bottom:4px;">역대하 9:25</div>
+      <div style="font-size:1.4rem;font-weight:800;">4,000</div>
+      <div style="color:var(--muted);">마구간의 말</div>
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:0;">
+  <strong>학자들의 접근:</strong> 이런 숫자 차이는 주로 두 가지로 설명됩니다. ① 필사 과정의 오류(숫자는 쉽게 오기됨), ② 서로 다른 단위나 계산 방식. 이러한 현상은 고대 역사 문서에서 흔하며, 성경의 신학적 주제 자체를 훼손하지 않습니다.
+  </div>
+</div>
+</div>
+
+<div id="hard-h2" class="tab-panel">
+<div class="card">
+  <p style="font-size:.9rem;font-weight:700;margin-bottom:12px;">예시: 고대 우주론적 표현들</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">"땅의 네 모퉁이"</span> (사 11:12) — 지구가 사각형이라는 뜻이 아닙니다. "사방"을 뜻하는 히브리어 관용 표현.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">"창공"</span> (라키아, 창 1:6) — 고대 근동 사람들의 우주관 언어로 쓰여진 표현. 현대 대기과학 개념이 아님.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">태양이 "멈췄다"</span> (수 10:12–13) — 전쟁 기술(記述)의 시적 과장 또는 관찰자 언어.
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:0;">
+  <strong>칼빈의 원리 적용:</strong> 하나님은 당대 독자들이 이해할 수 있는 언어를 사용하셨습니다. 현대 과학 지식 없이 신앙의 진리를 전달하는 것이 이 표현들의 목적이었습니다.
+  </div>
+</div>
+</div>
+
+<div id="hard-h3" class="tab-panel">
+<div class="card">
+  <p style="font-size:.9rem;font-weight:700;margin-bottom:12px;">예시: 헤렘(הֵרֶם) 전쟁 명령</p>
+  <div class="warn-box" style="margin-bottom:12px;">
+  신명기 7장에서 하나님이 가나안 민족을 "진멸하라"고 명령하십니다. 이것을 어떻게 이해해야 할까요?
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">① 역사적 맥락:</span> 헤렘은 고대 근동 전쟁 문학의 과장 수사법. 실제로 가나안 민족이 완전히 멸절되지 않았음(사사기에 계속 등장).
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">② 점진적 계시:</span> 예수님은 "눈에는 눈"(출 21:24)을 "원수를 사랑하라"(마 5:44)로 심화시킴. 구약 윤리 명령이 신약에서 재해석됨.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">③ 신학적 선포:</span> 이스라엘의 순결(종교적 오염 방지)을 위한 신학적 진술로 이해. 후대의 보편 선교 비전과 함께 읽어야 함.
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:0;">
+  어려운 본문은 회피가 아니라 정직한 씨름이 필요합니다. 복음주의 학자들도 이 본문에 대해 다양한 견해를 가지며 진지하게 논의합니다.
+  </div>
+</div>
+</div>
+</section>
+
+
+<!-- S4 권위의 근거 -->
+<section id="s4">
+<div class="section-title">🏛️ 성경의 권위는 어디서 오는가</div>
+<p class="section-sub">성경이 권위를 갖는 근거를 세 가지 측면에서 살펴봅니다.</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('auth','a1',this)">자기증거</button>
+  <button class="tab-btn" onclick="switchTab('auth','a2',this)">정경 형성</button>
+  <button class="tab-btn" onclick="switchTab('auth','a3',this)">성령의 증거</button>
+</div>
+
+<div id="auth-a1" class="tab-panel active">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:10px;">① 자기증거 (Self-attestation)</p>
+  <div class="purple-box" style="margin-bottom:12px;">
+  "모든 성경은 하나님의 감동으로 된 것으로 교훈과 책망과 바르게 함과 의로 교육하기에 유익하니" — 딤후 3:16
+  </div>
+  <p style="font-size:.9rem;line-height:1.75;">성경은 스스로 하나님의 말씀임을 증언합니다. 물론 이것은 순환논리처럼 보일 수 있습니다. 하지만 어떤 최종 권위도 자기 자신 이상을 근거로 삼을 수 없습니다. 이것은 논리의 문제가 아니라 신앙의 출발점입니다. 역사, 예언의 성취, 변화된 삶의 이야기들이 이 자기증거를 지지합니다.</p>
+</div>
+</div>
+
+<div id="auth-a2" class="tab-panel">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:10px;">② 정경 형성 (Canon Formation)</p>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">정경(Canon)이란?</span> 신앙 공동체가 권위 있다고 인정한 문서들의 모음. 헬라어 κανών(kanon)은 "자, 기준"을 뜻합니다.
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">결정 기준:</span> ① 사도성 — 사도나 그 제자의 저작 ② 정통성 — 기독교 핵심 교리와 일치 ③ 보편성 — 여러 교회 공동체에서 인정
+    </div>
+    <div style="background:#f8f9fa;border-radius:8px;padding:12px;font-size:.85rem;">
+      <span style="font-weight:700;">중요한 오해:</span> 교회가 정경을 <em>결정</em>한 것이 아니라 이미 권위 있는 것으로 <em>인정</em>한 것입니다. 즉 교회의 권위가 성경의 권위를 만든 것이 아닙니다.
+    </div>
+  </div>
+  <div class="highlight-box" style="margin-top:0;">
+  신약 정경은 2세기부터 서서히 형성되어, 397년 카르타고 공의회에서 오늘날과 같은 27권이 공식 확인되었습니다.
+  </div>
+</div>
+</div>
+
+<div id="auth-a3" class="tab-panel">
+<div class="card">
+  <p style="font-weight:700;margin-bottom:10px;">③ 성령의 내적 증거 (testimonium Spiritus Sancti internum)</p>
+  <div class="purple-box" style="margin-bottom:12px;">
+  칼빈의 핵심 통찰: 성경의 권위는 외부적 증거(교회의 인정, 역사적 논증)만으로는 충분하지 않습니다. 성령 하나님이 독자의 마음속에서 성경이 하나님의 말씀임을 증언하십니다.
+  </div>
+  <p style="font-size:.9rem;line-height:1.75;margin-bottom:12px;">
+  이것은 순전히 주관적인 감정이 아닙니다. 칼빈에 따르면 이 증거는 성경의 내용 — 하나님의 위엄, 구원의 교리, 예언의 성취 — 을 통해 작동합니다. 성경을 읽으면서 "이것은 사람의 말이 아니다"라는 확신이 오는 것이 바로 이 증거입니다.
+  </p>
+  <div class="highlight-box" style="margin-top:0;">
+  이 통찰은 현대 철학의 개혁 인식론(Reformed Epistemology)과 연결됩니다. 올빈가(Alvin Plantinga)는 하나님 믿음이 외부 증거 없이도 "기본 믿음"으로 정당화될 수 있다고 주장했습니다.
+  </div>
+</div>
+</div>
+</section>
+
+<!-- S5 EC와 무오성 -->
+<section id="s5">
+<div class="section-title">🌿 EC와 무오성 — 함께 갈 수 있나?</div>
+<p class="section-sub">진화적 창조를 받아들이면 성경을 믿지 않는 것인가요?</p>
+
+<div class="card">
+  <p style="font-size:1rem;font-weight:800;color:var(--primary);margin-bottom:14px;">핵심 논증: 무오성의 의미를 정확히 이해하라</p>
+
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+    <div style="display:flex;gap:12px;align-items:flex-start;">
+      <span style="font-size:1.4rem;flex-shrink:0;">❌</span>
+      <div style="font-size:.9rem;line-height:1.7;"><strong>잘못된 전제:</strong> "성경이 무오하다 = 창세기는 현대 과학 교과서처럼 정확한 지질학·생물학 정보를 담고 있어야 한다"</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;">
+      <span style="font-size:1.4rem;flex-shrink:0;">✅</span>
+      <div style="font-size:.9rem;line-height:1.7;"><strong>올바른 이해:</strong> "성경이 무오하다 = 성경은 가르치고자 하는 목적에서 오류가 없다. 창세기의 목적은 '누가 창조했는가'이지, '어떻게 만들어졌는가'가 아니다."</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+  <strong>시카고 선언(1978) Article XIII</strong> — 무오성을 부정하지 않는 성경 현상을 명시적으로 인정합니다: "현대적 기술 정밀도의 결여, 자연에 대한 관찰자 언어의 사용, 과장법과 어림수의 사용, 자료의 주제별 배열, 유사 본문에서의 다양한 자료 선택..."
+  </div>
+
+  <div style="margin-top:14px;font-size:.9rem;line-height:1.75;">
+  다시 말해, <strong>시카고 선언 자체</strong>가 장르와 문학적 관습을 인정합니다. 창세기를 신학적 선포 장르로 이해하고 EC를 지지하는 학자들이 시카고 선언에 서명하는 것이 논리적으로 가능한 이유입니다.
+  </div>
+</div>
+
+<div class="purple-box" style="margin-top:16px;">
+<strong>아우구스티누스의 경고</strong> (4세기): "기독교인이 성경을 근거로 천문학·지질학에 대해 어리석은 주장을 하여 불신자들이 성경을 비웃게 만드는 것은 크게 경계해야 한다." (<em>De Genesi ad Litteram</em>, I, 19) — 무오성을 강하게 믿었던 아우구스티누스가 한 말입니다.
+</div>
+</section>
+
+<!-- S6 주요 인물 -->
+<section id="s6">
+<div class="section-title">👤 주요 인물</div>
+<p class="section-sub">성경의 무오성과 권위 논쟁을 이끈 학자들입니다.</p>
+
+<div class="person-grid">
+  <div class="person-card">
+    <div class="person-name">B.B. 워필드</div>
+    <div class="person-dates">1851–1921 | 미국</div>
+    <div class="person-desc">프린스턴 신학교 교수. 현대적 무오성 교리의 아버지. A.A. 호지와 함께 1881년 "Inspiration" 논문에서 완전무오설을 체계화했습니다. 흥미롭게도 그는 생물학적 진화를 위협으로 여기지 않았습니다.</div>
+    <span class="person-tag">완전무오설</span>
+  </div>
+  <div class="person-card">
+    <div class="person-name">칼 바르트</div>
+    <div class="person-dates">1886–1968 | 스위스</div>
+    <div class="person-desc">신정통주의의 거장. "성경은 하나님 말씀의 증인이지, 하나님 말씀 자체가 아니다"라고 주장. 에반젤리칼의 비판을 받았지만, 그리스도 중심적 성경 해석으로 큰 영향을 미쳤습니다.</div>
+    <span class="person-tag">신정통주의</span>
+  </div>
+  <div class="person-card">
+    <div class="person-name">N.T. 라이트</div>
+    <div class="person-dates">1948– | 영국</div>
+    <div class="person-desc">성공회 주교이자 신약학자. "성경의 권위"를 명사가 아닌 동사로 이해합니다. 성경은 하나님이 세상을 회복하시는 이야기의 일부로서 권위를 지닌다고 봅니다. 역사적 예수 연구와 바울 신학의 새 관점으로 유명.</div>
+    <span class="person-tag">서사적 권위론</span>
+  </div>
+  <div class="person-card">
+    <div class="person-name">피터 엔스</div>
+    <div class="person-dates">1961– | 미국</div>
+    <div class="person-desc">웨스트민스터 신학교 교수였으나 성육신 유비를 주장하다 해임. <em>Inspiration and Incarnation</em>(2005)에서 성경의 인간적 특성을 강조. 현재는 EC를 지지하는 진보적 복음주의 학자.</div>
+    <span class="person-tag">성육신 유비</span>
+  </div>
+</div>
+</section>
+
+
+<!-- S7 퀴즈 -->
+<section id="s7">
+<div class="section-title">📝 확인 퀴즈</div>
+<p class="section-sub">10문제로 이 자료의 핵심을 확인합니다.</p>
+
+<div class="quiz-card">
+  <div class="quiz-q">1. 무오성(Inerrancy)과 무류성(Infallibility)의 차이로 옳은 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(1,'a','c')"><span>a</span> 두 용어는 완전히 같은 의미다.</div>
+    <div class="quiz-opt" onclick="checkQ(1,'b','c')"><span>b</span> 무오성은 신앙·도덕에서만 오류 없음을 뜻하고, 무류성은 모든 내용에서 오류 없음을 뜻한다.</div>
+    <div class="quiz-opt" onclick="checkQ(1,'c','c')"><span>c</span> 무오성은 오류가 없다는 더 강한 주장이며, 무류성은 성경이 목적에서 실패하지 않는다는 데 초점을 둔다.</div>
+    <div class="quiz-opt" onclick="checkQ(1,'d','c')"><span>d</span> 무류성은 19세기에 처음 등장한 개념이다.</div>
+  </div>
+  <div id="qfb1" class="quiz-feedback">✅ 맞습니다. 무오성(inerrancy)이 더 강한 주장으로 오류 자체의 부재를 강조하며, 무류성(infallibility)은 성경이 신앙적 목적에서 실패하지 않는다는 데 초점을 둡니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">2. 칼빈의 "조절 원리(Accommodation)"가 의미하는 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(2,'a','b')"><span>a</span> 성경이 현대 과학에 맞게 수정되어야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(2,'b','b')"><span>b</span> 하나님이 인간의 이해 수준에 맞춰 당대 언어와 개념으로 말씀하셨다.</div>
+    <div class="quiz-opt" onclick="checkQ(2,'c','b')"><span>c</span> 성경은 항상 문자적으로만 해석해야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(2,'d','b')"><span>d</span> 성경은 순전히 인간이 기록한 책이다.</div>
+  </div>
+  <div id="qfb2" class="quiz-feedback">✅ 맞습니다. 칼빈의 조절 원리는 하나님이 인간의 한계에 맞춰 이해 가능한 언어로 말씀하셨다는 통찰입니다. EC와 무오성을 연결하는 핵심 원리입니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">3. 정경(Canon)에 대한 설명으로 옳은 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(3,'a','c')"><span>a</span> 교회가 성경에 권위를 부여하여 만들어낸 목록이다.</div>
+    <div class="quiz-opt" onclick="checkQ(3,'b','c')"><span>b</span> 바티칸이 단독으로 결정한 공식 문서 목록이다.</div>
+    <div class="quiz-opt" onclick="checkQ(3,'c','c')"><span>c</span> 신앙 공동체가 이미 권위 있는 것으로 인정한 문서들의 모음이다.</div>
+    <div class="quiz-opt" onclick="checkQ(3,'d','c')"><span>d</span> 예수님이 직접 목록을 지정하셨다.</div>
+  </div>
+  <div id="qfb3" class="quiz-feedback">✅ 맞습니다. 교회는 정경을 만든 것이 아니라, 이미 권위 있는 것으로 수용되던 문서들을 공식 확인했습니다. 교회의 권위가 성경의 권위를 창출한 것이 아닙니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">4. 1978년 시카고 선언(ICBI)이 명시적으로 인정한 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(4,'a','b')"><span>a</span> 성경에 신학적 오류가 있을 수 있다.</div>
+    <div class="quiz-opt" onclick="checkQ(4,'b','b')"><span>b</span> 장르, 문학적 관습, 과장법, 자연에 대한 관찰자 언어가 성경에 존재하며 이것이 무오성을 훼손하지 않는다.</div>
+    <div class="quiz-opt" onclick="checkQ(4,'c','b')"><span>c</span> 과학이 성경 해석보다 우선한다.</div>
+    <div class="quiz-opt" onclick="checkQ(4,'d','b')"><span>d</span> 구약의 역사 기술은 신뢰할 수 없다.</div>
+  </div>
+  <div id="qfb4" class="quiz-feedback">✅ 맞습니다. 시카고 선언 Article XIII는 현대적 기술 정밀도의 결여, 과장법, 어림수, 자연에 대한 관찰자 언어 등이 무오성을 부정하지 않는다고 명시합니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">5. 무오성의 핵심 의미로 가장 정확한 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(5,'a','c')"><span>a</span> 성경의 모든 진술이 현대 과학 기준으로 정확하다.</div>
+    <div class="quiz-opt" onclick="checkQ(5,'b','c')"><span>b</span> 성경 번역본에 오류가 없다.</div>
+    <div class="quiz-opt" onclick="checkQ(5,'c','c')"><span>c</span> 성경은 가르치고자 하는 목적에서 오류가 없다.</div>
+    <div class="quiz-opt" onclick="checkQ(5,'d','c')"><span>d</span> 성경 원본(Autographs)은 현재 존재한다.</div>
+  </div>
+  <div id="qfb5" class="quiz-feedback">✅ 맞습니다. 무오성은 성경이 의도하는 목적과 가르침에서 오류가 없다는 주장입니다. 현대 과학 기준의 정밀도나 번역 무오성과는 다른 개념입니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">6. "성령의 내적 증거(testimonium Spiritus Sancti internum)"를 강조한 신학자는?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(6,'a','c')"><span>a</span> 칼 바르트</div>
+    <div class="quiz-opt" onclick="checkQ(6,'b','c')"><span>b</span> B.B. 워필드</div>
+    <div class="quiz-opt" onclick="checkQ(6,'c','c')"><span>c</span> 존 칼빈</div>
+    <div class="quiz-opt" onclick="checkQ(6,'d','c')"><span>d</span> 피터 엔스</div>
+  </div>
+  <div id="qfb6" class="quiz-feedback">✅ 맞습니다. 칼빈은 성경 권위의 궁극적 근거가 외부 증거가 아니라 성령 하나님이 독자의 마음속에서 증언하시는 내적 증거라고 강조했습니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">7. 피터 엔스의 "성육신 유비(Incarnational Analogy)"가 주장하는 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(7,'a','c')"><span>a</span> 예수님이 성경을 직접 기록하셨다.</div>
+    <div class="quiz-opt" onclick="checkQ(7,'b','c')"><span>b</span> 성경은 완전히 인간의 책이다.</div>
+    <div class="quiz-opt" onclick="checkQ(7,'c','c')"><span>c</span> 성경은 예수님처럼 신적 기원과 인간적 특성을 동시에 지닌다.</div>
+    <div class="quiz-opt" onclick="checkQ(7,'d','c')"><span>d</span> 성경은 완전히 신적이어서 인간적 오류가 없다.</div>
+  </div>
+  <div id="qfb7" class="quiz-feedback">✅ 맞습니다. 엔스는 예수님이 완전한 신성과 완전한 인성을 지니셨듯, 성경도 신적 기원을 지니면서도 완전히 인간적 특성(문화적 맥락, 시대적 한계 등)을 담는다고 봤습니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">8. EC(진화적 창조)와 무오성의 관계로 옳은 것은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(8,'a','c')"><span>a</span> EC를 받아들이면 반드시 무오성을 포기해야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(8,'b','c')"><span>b</span> 무오성을 주장하면 EC를 받아들일 수 없다.</div>
+    <div class="quiz-opt" onclick="checkQ(8,'c','c')"><span>c</span> 창세기의 장르(신학적 선포)를 이해하면 무오성을 주장하면서 EC를 받아들이는 것이 가능하다.</div>
+    <div class="quiz-opt" onclick="checkQ(8,'d','c')"><span>d</span> EC는 성경을 전혀 고려하지 않는 입장이다.</div>
+  </div>
+  <div id="qfb8" class="quiz-feedback">✅ 맞습니다. 창세기의 장르가 과학 교과서가 아닌 신학적 선포임을 인정하면, 무오성(가르침의 목적에서 오류 없음)을 유지하면서도 EC를 수용할 수 있습니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">9. 신정통주의(Neo-orthodoxy, 칼 바르트)의 성경관은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(9,'a','b')"><span>a</span> 성경이 곧 직접적으로 하나님의 말씀이다.</div>
+    <div class="quiz-opt" onclick="checkQ(9,'b','b')"><span>b</span> 성경은 하나님 말씀의 인간적 증언이며, 신앙으로 읽을 때 하나님 말씀이 된다(becomes).</div>
+    <div class="quiz-opt" onclick="checkQ(9,'c','b')"><span>c</span> 성경은 순전히 인간의 종교적 경험을 기록한 문서다.</div>
+    <div class="quiz-opt" onclick="checkQ(9,'d','b')"><span>d</span> 성경은 도덕적 규범집에 불과하다.</div>
+  </div>
+  <div id="qfb9" class="quiz-feedback">✅ 맞습니다. 바르트는 성경이 하나님 말씀 자체(the Word)가 아니라 말씀의 증인(witness)이라고 봤습니다. 그러나 성령 안에서 읽을 때 성경을 통해 하나님 말씀이 들린다고 했습니다.</div>
+</div>
+
+<div class="quiz-card">
+  <div class="quiz-q">10. 성경의 어려운 본문(예: 헤렘 전쟁 명령)을 해석할 때 가장 중요한 원칙은?</div>
+  <div class="quiz-options">
+    <div class="quiz-opt" onclick="checkQ(10,'a','c')"><span>a</span> 문자적으로 오늘날에도 그대로 적용해야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(10,'b','c')"><span>b</span> 그런 본문은 성경에서 제거하거나 무시해야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(10,'c','c')"><span>c</span> 역사적·장르적·신학적 맥락과 점진적 계시의 흐름 안에서 이해해야 한다.</div>
+    <div class="quiz-opt" onclick="checkQ(10,'d','c')"><span>d</span> 현대 윤리 기준으로 본문을 다시 써야 한다.</div>
+  </div>
+  <div id="qfb10" class="quiz-feedback">✅ 맞습니다. 어려운 본문은 회피나 삭제가 아니라, 역사적 맥락(고대 전쟁 문학), 장르, 신학적 목적, 그리고 예수님으로 완성되는 점진적 계시의 흐름 안에서 정직하게 씨름해야 합니다.</div>
+</div>
+
+<div class="quiz-score" id="quiz-score">
+  <div class="score-num" id="score-display"></div>
+  <p style="margin-top:10px;font-size:.95rem;color:var(--muted);" id="score-msg"></p>
+</div>
+
+</section>
+
+</main>
+
+<footer style="background:#4a1942;color:rgba(255,255,255,.75);text-align:center;padding:20px;font-size:.82rem;">
+  <p>이브 (성경·신학·진화생물학·고대근동 전문) | 신앙과 이성 탐구 시리즈</p>
+</footer>
+
+<script>
+let answers={};
+const total=10;
+
+function switchTab(section,panelId,btn){
+  const bar=btn.parentElement;
+  bar.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const panels=document.querySelectorAll('[id^="'+section+'-"]');
+  panels.forEach(p=>p.classList.remove('active'));
+  document.getElementById(section+'-'+panelId).classList.add('active');
+}
+
+function checkQ(qNum,chosen,correct){
+  if(answers[qNum])return;
+  answers[qNum]=chosen;
+  const card=document.querySelector(`#s7 .quiz-card:nth-child(${qNum})`);
+  const opts=card.querySelectorAll('.quiz-opt');
+  const letters=['a','b','c','d'];
+  opts.forEach((opt,i)=>{
+    opt.style.pointerEvents='none';
+    if(letters[i]===correct) opt.classList.add('correct');
+    else if(letters[i]===chosen) opt.classList.add('wrong');
+  });
+  const fb=document.getElementById('qfb'+qNum);
+  if(chosen!==correct){
+    fb.textContent='❌ 틀렸습니다. 정답은 '+correct+'번입니다. '+fb.textContent.replace('✅ 맞습니다. ','');
+    fb.style.background='#ffe0d6';
+    fb.style.borderLeftColor='var(--accent)';
+  }
+  fb.classList.add('show');
+  if(Object.keys(answers).length===total) showScore();
+}
+
+function showScore(){
+  let score=0;
+  const correct={1:'c',2:'b',3:'c',4:'b',5:'c',6:'c',7:'c',8:'c',9:'b',10:'c'};
+  for(let k in correct){ if(answers[k]===correct[k]) score++; }
+  const el=document.getElementById('quiz-score');
+  document.getElementById('score-display').textContent=score+' / '+total;
+  const msgs=['다시 한번 차근차근 읽어보세요!','좋은 시작입니다. 계속 탐구하세요.','잘 이해하고 있습니다!','훌륭합니다! 깊이 이해하고 있군요!','완벽합니다! 대학생 버전에 도전해보세요!'];
+  document.getElementById('score-msg').textContent=msgs[Math.min(Math.floor(score/2),4)];
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// Nav scroll highlight
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-80) current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
