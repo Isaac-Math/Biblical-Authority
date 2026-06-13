@@ -111,14 +111,15 @@ details[open] summary::after{content:'－';}
 <body>
 
 <div style="background:#4a1942;padding:10px 20px;display:flex;align-items:center;gap:10px;">
-  <a href="index.html" style="color:#fff;text-decoration:none;font-size:.88rem;display:flex;align-items:center;gap:6px;">🏠 홈으로</a>
-  <span style="color:rgba(255,255,255,.4);font-size:.8rem;">|</span>
-  <span style="color:rgba(255,255,255,.7);font-size:.83rem;">성경의 무오성과 권위 — 청소년 버전</span>
+  <a href="index.html" style="color:#fff;text-decoration:none;font-size:.83rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:4px 12px;">🏠 홈으로</a>
+  <span style="color:rgba(255,255,255,.35);font-size:.8rem;">|</span>
+  <span style="color:rgba(255,255,255,.7);font-size:.82rem;">성경의 무오성과 권위 — 청소년 버전</span>
 </div>
 
 <div class="site-header">
   <h1>📜 성경의 무오성과 권위</h1>
-  <p>청소년 버전 — 성경은 어떻게 신뢰할 수 있는가?</p>
+  <p>성경은 어떻게 신뢰할 수 있는가?</p>
+  <span style="display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:4px 16px;font-size:.8rem;margin-top:12px;">청소년 버전</span>
 </div>
 
 <nav>
@@ -646,7 +647,7 @@ function switchTab(section,panelId,btn){
 function checkQ(qNum,chosen,correct){
   if(answers[qNum])return;
   answers[qNum]=chosen;
-  const card=document.querySelector(`#s7 .quiz-card:nth-child(${qNum})`);
+  const card=document.querySelectorAll('#s7 .quiz-card')[qNum-1];
   const opts=card.querySelectorAll('.quiz-opt');
   const letters=['a','b','c','d'];
   opts.forEach((opt,i)=>{
