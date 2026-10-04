@@ -33,7 +33,7 @@
   --accent:#e76f51; --sky:#4895ef; --sky-light:#cce5ff;
   --gold:#f4a261; --gold-light:#fde9d4;
   --purple:#7b2d8b; --purple-light:#e8d5ed; --purple-dark:#4a1942;
-  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#6c757d;
+  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#5c636a;
   --radius:12px; --shadow:0 2px 12px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -153,11 +153,17 @@ section{margin-bottom:60px;}
 }
 footer{background:var(--purple-dark);color:rgba(255,255,255,.75);text-align:center;padding:20px;font-size:.82rem;}
 footer a{color:rgba(255,255,255,.9);}
+/* 상단 바: 알약 버튼은 한 줄로 유지하고, 경로 문구는 좁은 화면에서 숨긴다 */
+.top-bar a{white-space:nowrap;flex-shrink:0;}
+.top-bar>span:last-child{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media(max-width:480px){.top-bar>span:nth-last-child(-n+2){display:none;}}
+/* nav로 이동했을 때 섹션 제목이 고정 nav 밑에 가리지 않게 */
+section[id]{scroll-margin-top:60px;}
 </style>
 </head>
 <body>
 
-<div style="background:var(--purple-dark);padding:10px 20px;display:flex;align-items:center;gap:10px;">
+<div class="top-bar" style="background:var(--purple-dark);padding:10px 20px;display:flex;align-items:center;gap:10px;">
   <a href="https://faithreason.kr/Faith_Reason/" style="color:#fff;text-decoration:none;font-size:.83rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:4px 12px;">← 전체 시리즈</a>
   <span style="color:rgba(255,255,255,.35);font-size:.8rem;">|</span>
   <a href="index.html" style="color:#fff;text-decoration:none;font-size:.83rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:4px 12px;">🏠 홈으로</a>
@@ -193,7 +199,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S0 소개 -->
 <section id="s0">
-<div class="section-title">🌐 소개</div>
+<h2 class="section-title">🌐 소개</h2>
 <p class="section-sub">무오성 논쟁의 학문적 지형도를 그립니다.</p>
 
 <div class="card">
@@ -209,7 +215,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S1 역사 -->
 <section id="s1">
-<div class="section-title">🏛️ 무오성의 역사적 발전</div>
+<h2 class="section-title">🏛️ 무오성의 역사적 발전</h2>
 <p class="section-sub">교부들의 성경관에서 1978년 시카고 선언까지.</p>
 
 <div class="timeline">
@@ -254,7 +260,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S2 스펙트럼 -->
 <section id="s2">
-<div class="section-title">📊 무오성 입장 스펙트럼</div>
+<h2 class="section-title">📊 무오성 입장 스펙트럼</h2>
 <p class="section-sub">보수에서 진보까지, 다섯 가지 주요 입장의 신학적 차이를 분석합니다.</p>
 
 <div class="spectrum-bar">
@@ -321,7 +327,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S3 시카고 선언 -->
 <section id="s3">
-<div class="section-title">📋 시카고 선언(1978) 분석</div>
+<h2 class="section-title">📋 시카고 선언(1978) 분석</h2>
 <p class="section-sub">완전무오설의 현대적 기준점인 시카고 선언의 핵심 조항들을 분석합니다.</p>
 
 <div class="card">
@@ -395,7 +401,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S4 영감론 -->
 <section id="s4">
-<div class="section-title">✨ 영감론 이론들</div>
+<h2 class="section-title">✨ 영감론 이론들</h2>
 <p class="section-sub">성경이 어떻게 쓰여졌는지에 대한 신학적 이론들을 비교합니다.</p>
 
 <div class="tab-bar">
@@ -445,7 +451,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S5 어려운 본문 -->
 <section id="s5">
-<div class="section-title">⚠️ 어려운 본문들 — 심화</div>
+<h2 class="section-title">⚠️ 어려운 본문들 — 심화</h2>
 <p class="section-sub">세 유형의 어려운 본문과 학자들의 접근 방법을 비교합니다.</p>
 
 <div class="tab-bar">
@@ -505,7 +511,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S6 정경론 -->
 <section id="s6">
-<div class="section-title">🏛️ 정경론 — 정경은 어떻게 결정되었나</div>
+<h2 class="section-title">🏛️ 정경론 — 정경은 어떻게 결정되었나</h2>
 <p class="section-sub">정경 형성 과정과 정경성·무오성의 관계를 분석합니다.</p>
 
 <div class="card">
@@ -559,7 +565,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S7 EC와 무오성 -->
 <section id="s7">
-<div class="section-title">🌿 EC와 무오성 — 신학적 양립 가능성</div>
+<h2 class="section-title">🌿 EC와 무오성 — 신학적 양립 가능성</h2>
 <p class="section-sub">진화적 창조를 수용하면서 무오성을 지키는 것이 가능한가?</p>
 
 <div class="card">
@@ -589,7 +595,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S8 학자 -->
 <section id="s8">
-<div class="section-title">👤 주요 학자</div>
+<h2 class="section-title">👤 주요 학자</h2>
 <p class="section-sub">무오성·성경 권위 논쟁을 이끈 8명의 핵심 학자들.</p>
 
 <div class="scholar-grid">
@@ -654,7 +660,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S9 용어 사전 -->
 <section id="s9">
-<div class="section-title">📚 용어 사전</div>
+<h2 class="section-title">📚 용어 사전</h2>
 <p class="section-sub">이 자료에서 사용된 핵심 용어들을 정리합니다.</p>
 
 <div class="gloss-grid">
@@ -711,7 +717,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S10 토론 논제 -->
 <section id="s10">
-<div class="section-title">💬 토론 논제</div>
+<h2 class="section-title">💬 토론 논제</h2>
 <p class="section-sub">이 자료를 바탕으로 깊이 있는 신학적 토론을 위한 논제들입니다.</p>
 
 <div class="discuss-grid">
@@ -751,7 +757,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S11 레퍼런스 -->
 <section id="s11">
-<div class="section-title">📎 학술 레퍼런스</div>
+<h2 class="section-title">📎 학술 레퍼런스</h2>
 <p class="section-sub">이 자료에서 다룬 논의의 근거 문헌입니다. 모든 서지정보는 직접 검증되었습니다.</p>
 
 <div class="card">
@@ -827,7 +833,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S12 퀴즈 -->
 <section id="s12">
-<div class="section-title">📝 심화 퀴즈</div>
+<h2 class="section-title">📝 심화 퀴즈</h2>
 <p class="section-sub">12문제로 대학생 버전의 핵심 논점을 검토합니다.</p>
 
 <div class="quiz-wrap">
@@ -1056,12 +1062,21 @@ window.addEventListener('scroll',()=>{
     const h = a.getAttribute('href');
     if (h && h.charAt(0) === '#') map[h.slice(1)] = a;
   });
+  // 현재 섹션의 링크가 nav 화면 밖에 있으면 nav만 가로로 움직여 보이게 한다(페이지 세로 스크롤은 건드리지 않음)
+  function showInNav(a) {
+    let box = a.parentElement;
+    while (box && box !== document.body && !(/(auto|scroll)/.test(getComputedStyle(box).overflowX) && box.scrollWidth > box.clientWidth + 1)) box = box.parentElement;
+    if (!box || box === document.body) return;
+    const r = a.getBoundingClientRect(), b = box.getBoundingClientRect();
+    if (r.left < b.left + 8 || r.right > b.right - 8) box.scrollLeft += (r.left - b.left) - (b.width - r.width) / 2;
+  }
   if (!('IntersectionObserver' in window)) return;
   const obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting && map[e.target.id]) {
         navLinks.forEach(function (a) { a.classList.remove('active'); });
         map[e.target.id].classList.add('active');
+        showInNav(map[e.target.id]);
       }
     });
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });

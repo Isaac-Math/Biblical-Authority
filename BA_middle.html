@@ -33,7 +33,7 @@
   --accent:#e76f51; --sky:#4895ef; --sky-light:#cce5ff;
   --gold:#f4a261; --gold-light:#fde9d4;
   --purple:#7b2d8b; --purple-light:#e8d5ed; --purple-dark:#4a1942;
-  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#6c757d;
+  --bg:#f9fafb; --card:#ffffff; --text:#1a1a2e; --muted:#5c636a;
   --radius:12px; --shadow:0 2px 12px rgba(0,0,0,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -131,11 +131,17 @@ details[open] summary::after{content:'－';}
 }
 footer{background:var(--purple-dark);color:rgba(255,255,255,.75);text-align:center;padding:20px;font-size:.82rem;}
 footer a{color:rgba(255,255,255,.9);}
+/* 상단 바: 알약 버튼은 한 줄로 유지하고, 경로 문구는 좁은 화면에서 숨긴다 */
+.top-bar a{white-space:nowrap;flex-shrink:0;}
+.top-bar>span:last-child{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media(max-width:480px){.top-bar>span:nth-last-child(-n+2){display:none;}}
+/* nav로 이동했을 때 섹션 제목이 고정 nav 밑에 가리지 않게 */
+section[id]{scroll-margin-top:60px;}
 </style>
 </head>
 <body>
 
-<div style="background:#4a1942;padding:10px 20px;display:flex;align-items:center;gap:10px;">
+<div class="top-bar" style="background:#4a1942;padding:10px 20px;display:flex;align-items:center;gap:10px;">
   <a href="https://faithreason.kr/Faith_Reason/" style="color:#fff;text-decoration:none;font-size:.83rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:4px 12px;">← 전체 시리즈</a>
   <span style="color:rgba(255,255,255,.35);font-size:.8rem;">|</span>
   <a href="index.html" style="color:#fff;text-decoration:none;font-size:.83rem;font-weight:600;display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:4px 12px;">🏠 홈으로</a>
@@ -166,7 +172,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S0 도입 -->
 <section id="s0">
-<div class="section-title">🌟 도입</div>
+<h2 class="section-title">🌟 도입</h2>
 <p class="section-sub">"성경이 틀렸다는 말인가요?" — 가장 흔한 오해에서 시작합니다.</p>
 
 <div class="card">
@@ -207,7 +213,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S1 무오성 -->
 <section id="s1">
-<div class="section-title">📖 무오성이란 무엇인가</div>
+<h2 class="section-title">📖 무오성이란 무엇인가</h2>
 <p class="section-sub">무오성은 하나의 단일한 입장이 아닙니다. 스펙트럼을 살펴봅니다.</p>
 
 <div class="highlight-box">
@@ -295,7 +301,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S2 영감론 -->
 <section id="s2">
-<div class="section-title">✨ 성경은 어떻게 쓰여졌나</div>
+<h2 class="section-title">✨ 성경은 어떻게 쓰여졌나</h2>
 <p class="section-sub">영감(Inspiration)이란 무엇인지, 다양한 이해를 살펴봅니다.</p>
 
 <div class="highlight-box">
@@ -336,7 +342,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S3 어려운 본문들 -->
 <section id="s3">
-<div class="section-title">⚠️ 어려운 본문들</div>
+<h2 class="section-title">⚠️ 어려운 본문들</h2>
 <p class="section-sub">성경에는 회피하지 않고 직면해야 할 본문들이 있습니다.</p>
 
 <div class="tab-bar">
@@ -413,7 +419,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S4 권위의 근거 -->
 <section id="s4">
-<div class="section-title">🏛️ 성경의 권위는 어디서 오는가</div>
+<h2 class="section-title">🏛️ 성경의 권위는 어디서 오는가</h2>
 <p class="section-sub">성경이 권위를 갖는 근거를 세 가지 측면에서 살펴봅니다.</p>
 
 <div class="tab-bar">
@@ -473,7 +479,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S5 EC와 무오성 -->
 <section id="s5">
-<div class="section-title">🌿 EC와 무오성 — 함께 갈 수 있나?</div>
+<h2 class="section-title">🌿 EC와 무오성 — 함께 갈 수 있나?</h2>
 <p class="section-sub">진화적 창조를 받아들이면 성경을 믿지 않는 것인가요?</p>
 
 <div class="card">
@@ -506,7 +512,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S6 주요 인물 -->
 <section id="s6">
-<div class="section-title">👤 주요 인물</div>
+<h2 class="section-title">👤 주요 인물</h2>
 <p class="section-sub">성경의 무오성과 권위 논쟁을 이끈 학자들입니다.</p>
 
 <div class="person-grid">
@@ -540,7 +546,7 @@ footer a{color:rgba(255,255,255,.9);}
 
 <!-- S7 퀴즈 -->
 <section id="s7">
-<div class="section-title">📝 확인 퀴즈</div>
+<h2 class="section-title">📝 확인 퀴즈</h2>
 <p class="section-sub">10문제로 이 자료의 핵심을 확인합니다.</p>
 
 <div class="quiz-card">
@@ -735,12 +741,21 @@ window.addEventListener('scroll',()=>{
     const h = a.getAttribute('href');
     if (h && h.charAt(0) === '#') map[h.slice(1)] = a;
   });
+  // 현재 섹션의 링크가 nav 화면 밖에 있으면 nav만 가로로 움직여 보이게 한다(페이지 세로 스크롤은 건드리지 않음)
+  function showInNav(a) {
+    let box = a.parentElement;
+    while (box && box !== document.body && !(/(auto|scroll)/.test(getComputedStyle(box).overflowX) && box.scrollWidth > box.clientWidth + 1)) box = box.parentElement;
+    if (!box || box === document.body) return;
+    const r = a.getBoundingClientRect(), b = box.getBoundingClientRect();
+    if (r.left < b.left + 8 || r.right > b.right - 8) box.scrollLeft += (r.left - b.left) - (b.width - r.width) / 2;
+  }
   if (!('IntersectionObserver' in window)) return;
   const obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting && map[e.target.id]) {
         navLinks.forEach(function (a) { a.classList.remove('active'); });
         map[e.target.id].classList.add('active');
+        showInNav(map[e.target.id]);
       }
     });
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
